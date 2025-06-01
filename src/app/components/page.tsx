@@ -2,7 +2,13 @@
 
 import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,7 +28,7 @@ import {
   ThumbsUp,
   Upload,
   X,
-  XCircle
+  XCircle,
 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -32,8 +38,12 @@ import { z } from "zod";
 const citizenRegistrationSchema = z.object({
   fullName: z.string().min(2, "নাম কমপক্ষে ২ অক্ষরের হতে হবে"),
   fullNameBn: z.string().min(2, "বাংলা নাম কমপক্ষে ২ অক্ষরের হতে হবে"),
-  nid: z.string().regex(/^\d{10}$|^\d{13}$|^\d{17}$/, "সঠিক জাতীয় পরিচয়পত্র নম্বর দিন"),
-  mobile: z.string().regex(/^01[3-9]\d{8}$/, "সঠিক মোবাইল নম্বর দিন (যেমন: 01700000000)"),
+  nid: z
+    .string()
+    .regex(/^\d{10}$|^\d{13}$|^\d{17}$/, "সঠিক জাতীয় পরিচয়পত্র নম্বর দিন"),
+  mobile: z
+    .string()
+    .regex(/^01[3-9]\d{8}$/, "সঠিক মোবাইল নম্বর দিন (যেমন: 01700000000)"),
   email: z.string().email("সঠিক ইমেইল ঠিকানা দিন"),
   address: z.string().min(10, "সম্পূর্ণ ঠিকানা লিখুন"),
   birthDate: z.string().min(1, "জন্ম তারিখ নির্বাচন করুন"),
@@ -42,21 +52,25 @@ const citizenRegistrationSchema = z.object({
   }),
 });
 
-const serviceApplicationSchema: z.ZodType<any> = z.object({
-  serviceType: z.string().min(1, "সেবার ধরন নির্বাচন করুন"),
-  applicantName: z.string().min(2, "আবেদনকারীর নাম লিখুন"),
-  fatherName: z.string().min(2, "পিতার নাম লিখুন"),
-  motherName: z.string().min(2, "মাতার নাম লিখুন"),
-  presentAddress: z.string().min(10, "বর্তমান ঠিকানা লিখুন"),
-  permanentAddress: z.string().min(10, "স্থায়ী ঠিকানা লিখুন"),
-  phoneNumber: z.string().regex(/^01[3-9]\d{8}$/, "সঠিক মোবাইল নম্বর দিন"),
-  emergencyContact: z.string().regex(/^01[3-9]\d{8}$/, "জরুরি যোগাযোগের নম্বর দিন"),
-  reason: z.string().min(20, "আবেদনের কারণ বিস্তারিত লিখুন (কমপক্ষে ২০ অক্ষর)"),
-});
+// const serviceApplicationSchema: z.ZodType<any> = z.object({
+//   serviceType: z.string().min(1, "সেবার ধরন নির্বাচন করুন"),
+//   applicantName: z.string().min(2, "আবেদনকারীর নাম লিখুন"),
+//   fatherName: z.string().min(2, "পিতার নাম লিখুন"),
+//   motherName: z.string().min(2, "মাতার নাম লিখুন"),
+//   presentAddress: z.string().min(10, "বর্তমান ঠিকানা লিখুন"),
+//   permanentAddress: z.string().min(10, "স্থায়ী ঠিকানা লিখুন"),
+//   phoneNumber: z.string().regex(/^01[3-9]\d{8}$/, "সঠিক মোবাইল নম্বর দিন"),
+//   emergencyContact: z.string().regex(/^01[3-9]\d{8}$/, "জরুরি যোগাযোগের নম্বর দিন"),
+//   reason: z.string().min(20, "আবেদনের কারণ বিস্তারিত লিখুন (কমপক্ষে ২০ অক্ষর)"),
+// });
 
 type CitizenRegistrationForm = z.infer<typeof citizenRegistrationSchema>;
 
-const InteractiveDemo = ({ title, description, children }: {
+const InteractiveDemo = ({
+  title,
+  description,
+  children,
+}: {
   title: string;
   description: string;
   children: React.ReactNode;
@@ -64,12 +78,14 @@ const InteractiveDemo = ({ title, description, children }: {
   return (
     <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 mb-8">
       <CardHeader>
-        <CardTitle className="text-gray-900 dark:text-gray-100">{title}</CardTitle>
-        <CardDescription className="text-gray-600 dark:text-gray-300">{description}</CardDescription>
+        <CardTitle className="text-gray-900 dark:text-gray-100">
+          {title}
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-300">
+          {description}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
-        {children}
-      </CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 };
@@ -94,19 +110,19 @@ const FileUploadDemo = () => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const newFiles = Array.from(e.dataTransfer.files);
-      setFiles(prev => [...prev, ...newFiles].slice(0, 5)); // Limit to 5 files
+      setFiles((prev) => [...prev, ...newFiles].slice(0, 5)); // Limit to 5 files
     }
   };
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const newFiles = Array.from(e.target.files);
-      setFiles(prev => [...prev, ...newFiles].slice(0, 5));
+      setFiles((prev) => [...prev, ...newFiles].slice(0, 5));
     }
   };
 
   const removeFile = (index: number) => {
-    setFiles(prev => prev.filter((_, i) => i !== index));
+    setFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -140,7 +156,10 @@ const FileUploadDemo = () => {
           className="hidden"
           id="file-upload"
         />
-        <Button variant="outline" onClick={() => document.getElementById('file-upload')?.click()}>
+        <Button
+          variant="outline"
+          onClick={() => document.getElementById("file-upload")?.click()}
+        >
           <Upload className="h-4 w-4 mr-2" />
           Select Files
         </Button>
@@ -148,13 +167,20 @@ const FileUploadDemo = () => {
 
       {files.length > 0 && (
         <div className="space-y-2">
-          <h4 className="font-medium text-gray-900 dark:text-gray-100">Uploaded Files:</h4>
+          <h4 className="font-medium text-gray-900 dark:text-gray-100">
+            Uploaded Files:
+          </h4>
           {files.map((file, index) => (
-            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div
+              key={index}
+              className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+            >
               <div className="flex items-center space-x-3">
                 <File className="h-5 w-5 text-primary-500" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{file.name}</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {file.name}
+                  </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
@@ -192,19 +218,29 @@ const PasswordFieldDemo = () => {
   };
 
   const passwordStrength = getPasswordStrength(password);
-  const strengthColors = ["bg-red-500", "bg-red-400", "bg-yellow-500", "bg-green-400", "bg-green-500"];
+  const strengthColors = [
+    "bg-red-500",
+    "bg-red-400",
+    "bg-yellow-500",
+    "bg-green-400",
+    "bg-green-500",
+  ];
   const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong"];
 
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="password" required>Password / পাসওয়ার্ড</Label>
+        <Label htmlFor="password" required>
+          Password / পাসওয়ার্ড
+        </Label>
         <div className="relative">
           <Input
             id="password"
             type={showPassword ? "text" : "password"}
             value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
             placeholder="Enter a strong password"
           />
           <Button
@@ -214,7 +250,11 @@ const PasswordFieldDemo = () => {
             className="absolute right-0 top-0 h-full px-3"
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            {showPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
           </Button>
         </div>
         {password && (
@@ -227,20 +267,40 @@ const PasswordFieldDemo = () => {
                 ></div>
               </div>
               <span className="text-xs text-gray-600 dark:text-gray-300">
-                {passwordStrength > 0 ? strengthLabels[passwordStrength - 1] : "Too Weak"}
+                {passwordStrength > 0
+                  ? strengthLabels[passwordStrength - 1]
+                  : "Too Weak"}
               </span>
             </div>
             <ul className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
-              <li className={`flex items-center space-x-1 ${password.length >= 8 ? "text-green-600" : ""}`}>
-                {password.length >= 8 ? <CheckCircle className="h-3 w-3" /> : <XCircle className="h-3 w-3" />}
+              <li
+                className={`flex items-center space-x-1 ${password.length >= 8 ? "text-green-600" : ""}`}
+              >
+                {password.length >= 8 ? (
+                  <CheckCircle className="h-3 w-3" />
+                ) : (
+                  <XCircle className="h-3 w-3" />
+                )}
                 <span>At least 8 characters</span>
               </li>
-              <li className={`flex items-center space-x-1 ${/[A-Z]/.test(password) ? "text-green-600" : ""}`}>
-                {/[A-Z]/.test(password) ? <CheckCircle className="h-3 w-3" /> : <XCircle className="h-3 w-3" />}
+              <li
+                className={`flex items-center space-x-1 ${/[A-Z]/.test(password) ? "text-green-600" : ""}`}
+              >
+                {/[A-Z]/.test(password) ? (
+                  <CheckCircle className="h-3 w-3" />
+                ) : (
+                  <XCircle className="h-3 w-3" />
+                )}
                 <span>One uppercase letter</span>
               </li>
-              <li className={`flex items-center space-x-1 ${/[0-9]/.test(password) ? "text-green-600" : ""}`}>
-                {/[0-9]/.test(password) ? <CheckCircle className="h-3 w-3" /> : <XCircle className="h-3 w-3" />}
+              <li
+                className={`flex items-center space-x-1 ${/[0-9]/.test(password) ? "text-green-600" : ""}`}
+              >
+                {/[0-9]/.test(password) ? (
+                  <CheckCircle className="h-3 w-3" />
+                ) : (
+                  <XCircle className="h-3 w-3" />
+                )}
                 <span>One number</span>
               </li>
             </ul>
@@ -249,15 +309,23 @@ const PasswordFieldDemo = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword" required>Confirm Password / পাসওয়ার্ড নিশ্চিত করুন</Label>
+        <Label htmlFor="confirmPassword" required>
+          Confirm Password / পাসওয়ার্ড নিশ্চিত করুন
+        </Label>
         <div className="relative">
           <Input
             id="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
             value={confirmPassword}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setConfirmPassword(e.target.value)
+            }
             placeholder="Confirm your password"
-            error={confirmPassword && password !== confirmPassword ? "Passwords do not match" : ""}
+            error={
+              confirmPassword && password !== confirmPassword
+                ? "Passwords do not match"
+                : ""
+            }
           />
           <Button
             type="button"
@@ -266,7 +334,11 @@ const PasswordFieldDemo = () => {
             className="absolute right-0 top-0 h-full px-3"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           >
-            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            {showConfirmPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
           </Button>
         </div>
       </div>
@@ -288,7 +360,7 @@ const CitizenRegistrationDemo = () => {
 
   const onSubmit = async (data: CitizenRegistrationForm) => {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log("Form submitted:", data);
     setSubmitted(true);
     reset();
@@ -315,7 +387,9 @@ const CitizenRegistrationDemo = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="fullName" required>Full Name (English)</Label>
+          <Label htmlFor="fullName" required>
+            Full Name (English)
+          </Label>
           <Input
             id="fullName"
             {...register("fullName")}
@@ -325,7 +399,9 @@ const CitizenRegistrationDemo = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="fullNameBn" required>Full Name (বাংলা)</Label>
+          <Label htmlFor="fullNameBn" required>
+            Full Name (বাংলা)
+          </Label>
           <Input
             id="fullNameBn"
             {...register("fullNameBn")}
@@ -335,7 +411,9 @@ const CitizenRegistrationDemo = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="nid" required>National ID Number</Label>
+          <Label htmlFor="nid" required>
+            National ID Number
+          </Label>
           <Input
             id="nid"
             {...register("nid")}
@@ -345,7 +423,9 @@ const CitizenRegistrationDemo = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="mobile" required>Mobile Number</Label>
+          <Label htmlFor="mobile" required>
+            Mobile Number
+          </Label>
           <Input
             id="mobile"
             {...register("mobile")}
@@ -355,7 +435,9 @@ const CitizenRegistrationDemo = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email" required>Email Address</Label>
+          <Label htmlFor="email" required>
+            Email Address
+          </Label>
           <Input
             id="email"
             type="email"
@@ -366,7 +448,9 @@ const CitizenRegistrationDemo = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="birthDate" required>Date of Birth</Label>
+          <Label htmlFor="birthDate" required>
+            Date of Birth
+          </Label>
           <Input
             id="birthDate"
             type="date"
@@ -377,7 +461,9 @@ const CitizenRegistrationDemo = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="address" required>Address</Label>
+        <Label htmlFor="address" required>
+          Address
+        </Label>
         <Textarea
           id="address"
           {...register("address")}
@@ -396,7 +482,9 @@ const CitizenRegistrationDemo = () => {
               {...register("gender")}
               className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
             />
-            <span className="text-sm text-gray-900 dark:text-gray-100">Male / পুরুষ</span>
+            <span className="text-sm text-gray-900 dark:text-gray-100">
+              Male / পুরুষ
+            </span>
           </label>
           <label className="flex items-center space-x-2">
             <input
@@ -405,7 +493,9 @@ const CitizenRegistrationDemo = () => {
               {...register("gender")}
               className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
             />
-            <span className="text-sm text-gray-900 dark:text-gray-100">Female / মহিলা</span>
+            <span className="text-sm text-gray-900 dark:text-gray-100">
+              Female / মহিলা
+            </span>
           </label>
           <label className="flex items-center space-x-2">
             <input
@@ -414,16 +504,27 @@ const CitizenRegistrationDemo = () => {
               {...register("gender")}
               className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
             />
-            <span className="text-sm text-gray-900 dark:text-gray-100">Other / অন্যান্য</span>
+            <span className="text-sm text-gray-900 dark:text-gray-100">
+              Other / অন্যান্য
+            </span>
           </label>
         </div>
         {errors.gender && (
-          <p className="text-sm text-red-600 dark:text-red-400">{errors.gender.message}</p>
+          <p className="text-sm text-red-600 dark:text-red-400">
+            {errors.gender.message}
+          </p>
         )}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} loading={isSubmitting} className="w-full">
-        {isSubmitting ? "Submitting..." : "Submit Registration / নিবন্ধন জমা দিন"}
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        loading={isSubmitting}
+        className="w-full"
+      >
+        {isSubmitting
+          ? "Submitting..."
+          : "Submit Registration / নিবন্ধন জমা দিন"}
       </Button>
     </form>
   );
@@ -431,29 +532,80 @@ const CitizenRegistrationDemo = () => {
 
 const AlertsDemo = () => {
   const [alerts, setAlerts] = useState([
-    { id: 1, type: "success", title: "Success", message: "Your application has been submitted successfully.", visible: true },
-    { id: 2, type: "warning", title: "Warning", message: "Please review your information before submitting.", visible: true },
-    { id: 3, type: "error", title: "Error", message: "Failed to upload document. Please try again.", visible: true },
-    { id: 4, type: "info", title: "Information", message: "Your session will expire in 5 minutes.", visible: true },
+    {
+      id: 1,
+      type: "success",
+      title: "Success",
+      message: "Your application has been submitted successfully.",
+      visible: true,
+    },
+    {
+      id: 2,
+      type: "warning",
+      title: "Warning",
+      message: "Please review your information before submitting.",
+      visible: true,
+    },
+    {
+      id: 3,
+      type: "error",
+      title: "Error",
+      message: "Failed to upload document. Please try again.",
+      visible: true,
+    },
+    {
+      id: 4,
+      type: "info",
+      title: "Information",
+      message: "Your session will expire in 5 minutes.",
+      visible: true,
+    },
   ]);
 
   const removeAlert = (id: number) => {
-    setAlerts(prev => prev.filter(alert => alert.id !== id));
+    setAlerts((prev) => prev.filter((alert) => alert.id !== id));
   };
 
   const resetAlerts = () => {
     setAlerts([
-      { id: 1, type: "success", title: "Success", message: "Your application has been submitted successfully.", visible: true },
-      { id: 2, type: "warning", title: "Warning", message: "Please review your information before submitting.", visible: true },
-      { id: 3, type: "error", title: "Error", message: "Failed to upload document. Please try again.", visible: true },
-      { id: 4, type: "info", title: "Information", message: "Your session will expire in 5 minutes.", visible: true },
+      {
+        id: 1,
+        type: "success",
+        title: "Success",
+        message: "Your application has been submitted successfully.",
+        visible: true,
+      },
+      {
+        id: 2,
+        type: "warning",
+        title: "Warning",
+        message: "Please review your information before submitting.",
+        visible: true,
+      },
+      {
+        id: 3,
+        type: "error",
+        title: "Error",
+        message: "Failed to upload document. Please try again.",
+        visible: true,
+      },
+      {
+        id: 4,
+        type: "info",
+        title: "Information",
+        message: "Your session will expire in 5 minutes.",
+        visible: true,
+      },
     ]);
   };
 
   const alertStyles = {
-    success: "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200",
-    warning: "bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-200",
-    error: "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200",
+    success:
+      "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200",
+    warning:
+      "bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-200",
+    error:
+      "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200",
     info: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200",
   };
 
@@ -488,7 +640,7 @@ const AlertsDemo = () => {
           </Button>
         </div>
       ))}
-      
+
       {alerts.length === 0 && (
         <div className="text-center py-8 text-gray-500 dark:text-gray-400">
           <p>All alerts have been dismissed.</p>
@@ -509,7 +661,7 @@ const PaymentDemo = () => {
 
   const handlePayment = async () => {
     setProcessing(true);
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     setProcessing(false);
     setCompleted(true);
   };
@@ -522,9 +674,16 @@ const PaymentDemo = () => {
           Payment Successful!
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Transaction ID: PAY-{Math.random().toString(36).substr(2, 9).toUpperCase()}
+          Transaction ID: PAY-
+          {Math.random().toString(36).substr(2, 9).toUpperCase()}
         </p>
-        <Button onClick={() => { setCompleted(false); setAmount(""); setPaymentMethod(""); }}>
+        <Button
+          onClick={() => {
+            setCompleted(false);
+            setAmount("");
+            setPaymentMethod("");
+          }}
+        >
           Make Another Payment
         </Button>
       </div>
@@ -534,12 +693,16 @@ const PaymentDemo = () => {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="amount" required>Payment Amount (BDT)</Label>
+        <Label htmlFor="amount" required>
+          Payment Amount (BDT)
+        </Label>
         <Input
           id="amount"
           type="number"
           value={amount}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setAmount(e.target.value)
+          }
           placeholder="0.00"
           min="1"
         />
@@ -570,7 +733,9 @@ const PaymentDemo = () => {
                 className="w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500"
               />
               <span className="text-2xl">{method.logo}</span>
-              <span className="font-medium text-gray-900 dark:text-gray-100">{method.name}</span>
+              <span className="font-medium text-gray-900 dark:text-gray-100">
+                {method.name}
+              </span>
             </label>
           ))}
         </div>
@@ -592,7 +757,7 @@ export default function ComponentsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Page Header */}
@@ -601,11 +766,13 @@ export default function ComponentsPage() {
               Interactive Components / ইন্টারঅ্যাক্টিভ কম্পোনেন্ট
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-              Explore interactive components designed for Bangladesh e-government services. 
-              See how components behave, validate data, and provide feedback to users.
+              Explore interactive components designed for Bangladesh
+              e-government services. See how components behave, validate data,
+              and provide feedback to users.
             </p>
             <p className="text-lg text-gray-500 dark:text-gray-400 mt-2 font-bengali">
-              বাংলাদেশের ই-সরকার সেবার জন্য ডিজাইন করা ইন্টারঅ্যাক্টিভ কম্পোনেন্ট দেখুন এবং পরীক্ষা করুন।
+              বাংলাদেশের ই-সরকার সেবার জন্য ডিজাইন করা ইন্টারঅ্যাক্টিভ
+              কম্পোনেন্ট দেখুন এবং পরীক্ষা করুন।
             </p>
           </div>
 
@@ -620,8 +787,12 @@ export default function ComponentsPage() {
               <Button variant="outline">Outline</Button>
               <Button variant="ghost">Ghost</Button>
               <Button variant="danger">Delete</Button>
-              <Button variant="primary" loading>Loading...</Button>
-              <Button variant="outline" disabled>Disabled</Button>
+              <Button variant="primary" loading>
+                Loading...
+              </Button>
+              <Button variant="outline" disabled>
+                Disabled
+              </Button>
               <Button variant="primary" icon={<Download className="h-4 w-4" />}>
                 Download
               </Button>
@@ -677,33 +848,49 @@ export default function ComponentsPage() {
               <div className="p-4 border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
                   <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="font-medium text-green-800 dark:text-green-200">Approved</span>
+                  <span className="font-medium text-green-800 dark:text-green-200">
+                    Approved
+                  </span>
                 </div>
-                <p className="text-sm text-green-700 dark:text-green-300">Your application has been approved</p>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Your application has been approved
+                </p>
               </div>
-              
+
               <div className="p-4 border border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
                   <AlertTriangle className="h-5 w-5 text-yellow-600" />
-                  <span className="font-medium text-yellow-800 dark:text-yellow-200">Pending</span>
+                  <span className="font-medium text-yellow-800 dark:text-yellow-200">
+                    Pending
+                  </span>
                 </div>
-                <p className="text-sm text-yellow-700 dark:text-yellow-300">Under review by authorities</p>
+                <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                  Under review by authorities
+                </p>
               </div>
-              
+
               <div className="p-4 border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
                   <XCircle className="h-5 w-5 text-red-600" />
-                  <span className="font-medium text-red-800 dark:text-red-200">Rejected</span>
+                  <span className="font-medium text-red-800 dark:text-red-200">
+                    Rejected
+                  </span>
                 </div>
-                <p className="text-sm text-red-700 dark:text-red-300">Please resubmit with corrections</p>
+                <p className="text-sm text-red-700 dark:text-red-300">
+                  Please resubmit with corrections
+                </p>
               </div>
-              
+
               <div className="p-4 border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <div className="flex items-center space-x-2 mb-2">
                   <Info className="h-5 w-5 text-blue-600" />
-                  <span className="font-medium text-blue-800 dark:text-blue-200">In Progress</span>
+                  <span className="font-medium text-blue-800 dark:text-blue-200">
+                    In Progress
+                  </span>
                 </div>
-                <p className="text-sm text-blue-700 dark:text-blue-300">Currently being processed</p>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  Currently being processed
+                </p>
               </div>
             </div>
           </InteractiveDemo>
@@ -731,21 +918,33 @@ export default function ComponentsPage() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex justify-center space-x-4">
-                <Button variant="outline" className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  className="flex items-center space-x-2"
+                >
                   <ThumbsUp className="h-4 w-4" />
                   <span>Helpful</span>
                 </Button>
-                <Button variant="outline" className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  className="flex items-center space-x-2"
+                >
                   <Heart className="h-4 w-4" />
                   <span>Love it</span>
                 </Button>
-                <Button variant="outline" className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  className="flex items-center space-x-2"
+                >
                   <MessageSquare className="h-4 w-4" />
                   <span>Comment</span>
                 </Button>
-                <Button variant="outline" className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  className="flex items-center space-x-2"
+                >
                   <Share2 className="h-4 w-4" />
                   <span>Share</span>
                 </Button>
@@ -768,10 +967,16 @@ export default function ComponentsPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-green-800 dark:text-green-200">
-                    <li>• Always provide clear error messages in both languages</li>
+                    <li>
+                      • Always provide clear error messages in both languages
+                    </li>
                     <li>• Use loading states for better user experience</li>
-                    <li>• Implement real-time validation for immediate feedback</li>
-                    <li>• Include progress indicators for multi-step processes</li>
+                    <li>
+                      • Implement real-time validation for immediate feedback
+                    </li>
+                    <li>
+                      • Include progress indicators for multi-step processes
+                    </li>
                     <li>• Test with actual users and government officials</li>
                     <li>• Use consistent patterns across all forms</li>
                   </ul>
@@ -787,10 +992,18 @@ export default function ComponentsPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-red-800 dark:text-red-200">
-                    <li>• Don&apos;t show validation errors before user input</li>
-                    <li>• Avoid complex forms without clear progress indication</li>
-                    <li>• Don&apos;t use technical error messages for end users</li>
-                    <li>• Avoid auto-submitting forms without user confirmation</li>
+                    <li>
+                      • Don&apos;t show validation errors before user input
+                    </li>
+                    <li>
+                      • Avoid complex forms without clear progress indication
+                    </li>
+                    <li>
+                      • Don&apos;t use technical error messages for end users
+                    </li>
+                    <li>
+                      • Avoid auto-submitting forms without user confirmation
+                    </li>
                     <li>• Don&apos;t hide important validation requirements</li>
                     <li>• Avoid inconsistent button placements and styles</li>
                   </ul>
@@ -802,4 +1015,4 @@ export default function ComponentsPage() {
       </main>
     </div>
   );
-} 
+}
