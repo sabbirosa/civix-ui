@@ -1,18 +1,22 @@
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Civix UI - E-Government Design System",
+  title: "Civix UI - Government Component Guidelines",
   description:
-    "Modern, accessible, and inclusive UI components and design guidelines for building government digital services.",
+    "Modern, accessible, and inclusive component guidelines and UI patterns for building government digital services.",
   keywords:
-    "civix ui, government design system, e-government, ui components, accessibility, design system",
+    "civix ui, government component guidelines, e-government, ui guidelines, accessibility, component patterns",
   authors: [{ name: "Civix UI Team" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

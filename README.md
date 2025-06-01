@@ -1,10 +1,10 @@
-# Civix UI - E-Government Design System
+# Civix UI - Government Component Guidelines
 
-A modern, accessible, and inclusive design system for building government digital services.
+A modern, accessible, and inclusive component guideline library for building government digital services.
 
 ## 🎯 Mission
 
-Supporting government agencies worldwide by providing standardized guidelines, reusable UI components, and best-practice checklists for web applications that serve all citizens, including those with
+Supporting government agencies worldwide by providing standardized component guidelines, reusable UI patterns, and best-practice checklists for web applications that serve all citizens, including those with
 limited digital literacy, disabilities, or access to modern devices.
 
 ## 🌟 Key Features
@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the design system in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view the component guidelines in your browser.
 
 ## 📁 Project Structure
 
@@ -125,13 +125,14 @@ We welcome contributions from developers, designers, and accessibility experts!
 
 ### Guidelines
 
-This design system is built for modern government services. Contributions should align with:
+This component guideline library is built for modern government services. Contributions should align with:
 
 - **Accessibility**: All components must meet WCAG 2.1 AA standards
 - **Performance**: Maintain fast loading times and smooth interactions
 - **Usability**: Design for users with varying levels of digital literacy
 - **Internationalization**: Support for multiple languages and scripts
 - **Mobile-First**: Responsive design that works on all devices
+- **Government component guideline libraries worldwide for inspiration**
 
 ## 📝 License
 
@@ -152,4 +153,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Civix UI - Modern E-Government Design System** - Building accessible digital services for all citizens 🌐
+**Civix UI - Modern Government Component Guidelines** - Building accessible digital services for all citizens 🌐

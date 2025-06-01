@@ -2,23 +2,23 @@ import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-    BookOpen,
-    CheckCircle,
-    Code,
-    Download,
-    ExternalLink,
-    Github,
-    GraduationCap,
-    HelpCircle,
-    Mail,
-    Package,
-    Palette,
-    PlayCircle,
-    Shield,
-    Star,
-    Timer,
-    Users,
-    Wrench
+  BookOpen,
+  CheckCircle,
+  Code,
+  Download,
+  ExternalLink,
+  Github,
+  GraduationCap,
+  HelpCircle,
+  Mail,
+  Package,
+  Palette,
+  PlayCircle,
+  Shield,
+  Star,
+  Timer,
+  Users,
+  Wrench
 } from "lucide-react";
 
 const resourceCategories = [
@@ -32,8 +32,8 @@ const resourceCategories = [
       {
         name: "Bangladesh UI Kit",
         namebn: "বাংলাদেশ UI কিট",
-        description: "Complete component library with Bangladesh government branding",
-        type: "Library",
+        description: "Complete component guideline library with Bangladesh government branding",
+        type: "Guidelines",
         link: "#",
         downloads: "2.5K",
         rating: 4.9,
@@ -186,7 +186,7 @@ const supportChannels = [
 
 const quickLinks = [
   { name: "Getting Started", namebn: "শুরু করা", icon: <PlayCircle className="h-4 w-4" />, link: "#" },
-  { name: "Component Library", namebn: "কম্পোনেন্ট লাইব্রেরি", icon: <Package className="h-4 w-4" />, link: "#" },
+  { name: "Component Guidelines", namebn: "কম্পোনেন্ট নির্দেশিকা", icon: <Package className="h-4 w-4" />, link: "#" },
   { name: "Design Tokens", namebn: "ডিজাইন টোকেন", icon: <Palette className="h-4 w-4" />, link: "#" },
   { name: "Code Examples", namebn: "কোড উদাহরণ", icon: <Code className="h-4 w-4" />, link: "#" },
   { name: "Best Practices", namebn: "সর্বোত্তম অনুশীলন", icon: <CheckCircle className="h-4 w-4" />, link: "#" },

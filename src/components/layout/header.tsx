@@ -13,7 +13,6 @@ interface HeaderProps {
 
 const navigationItems = [
   { name: "Components", href: "/components", namebn: "কম্পোনেন্ট" },
-  { name: "Design System", href: "/design-system", namebn: "ডিজাইন সিস্টেম" },
   { name: "Guidelines", href: "/guidelines", namebn: "নির্দেশিকা" },
   { name: "Templates", href: "/templates", namebn: "টেমপ্লেট" },
   { name: "Resources", href: "/resources", namebn: "রিসোর্স" },
@@ -44,7 +43,7 @@ export function Header({ className }: HeaderProps) {
                   {language === "en" ? "Civix UI" : "সিভিক্স UI"}
                 </div>
                 <div className="text-xs text-secondary-600 dark:text-gray-300">
-                  {language === "en" ? "Design System" : "ডিজাইন সিস্টেম"}
+                  {language === "en" ? "Component Guidelines" : "কম্পোনেন্ট নির্দেশিকা"}
                 </div>
               </div>
             </Link>

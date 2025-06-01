@@ -115,11 +115,11 @@ export default function Home() {
           <h1 className="text-4xl lg:text-6xl font-bold text-secondary-900 dark:text-gray-100 mb-6">
             Civix UI
             <span className="block text-primary-500 dark:text-primary-400">
-              E-Government Design System
+              Government Component Guidelines
             </span>
           </h1>
           <p className="text-xl text-secondary-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-            Modern UI components and design guidelines for building accessible,
+            Modern component guidelines and UI patterns for building accessible,
             user-friendly government digital services that serve all citizens
             effectively.
           </p>
@@ -178,7 +178,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-secondary-600 dark:text-gray-300">
             Everything you need to build consistent, accessible e-government
-            applications
+            applications with proven guidelines
           </p>
         </div>
 
@@ -208,7 +208,7 @@ export default function Home() {
             Ready to Build Better Government Services?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Start using our design system to create accessible, user-friendly
+            Start using our component guidelines to create accessible, user-friendly
             e-government applications that serve all citizens effectively.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -232,7 +232,7 @@ export default function Home() {
       <footer className="bg-secondary-50 dark:bg-gray-800 py-12">
         <div className="container mx-auto px-4 text-center">
           <p className="text-secondary-600 dark:text-gray-300">
-            © 2024 Civix UI - Modern E-Government Design System. Building
+            © 2024 Civix UI - Modern Government Component Guidelines. Building
             accessible digital services for all.
           </p>
         </div>
