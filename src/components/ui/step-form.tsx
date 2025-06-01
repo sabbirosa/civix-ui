@@ -12,7 +12,6 @@ interface StepFormProps {
   currentStep: number;
   steps: Step[];
   onStepChange?: (step: number) => void;
-  validateStep?: (stepId: number) => boolean;
   showProgress?: boolean;
   children: React.ReactNode;
 }
@@ -26,7 +25,6 @@ export function StepForm({
   currentStep, 
   steps, 
   onStepChange, 
-  validateStep,
   showProgress = false,
   children 
 }: StepFormProps) {

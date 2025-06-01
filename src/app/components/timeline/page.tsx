@@ -44,7 +44,7 @@ const TimelineItem = ({
   description: string;
   timestamp: string;
   status: 'completed' | 'current' | 'pending' | 'error' | 'warning';
-  icon?: any;
+  icon?: React.ComponentType<{ className?: string }>;
   details?: string;
   action?: React.ReactNode;
 }) => {
@@ -504,7 +504,7 @@ export default function TimelinePage() {
             <CardContent className="p-6">
               <div className="flex items-center space-x-2 mb-4">
                 <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <h3 className="font-semibold text-red-900 dark:text-red-100">Don't</h3>
+                <h3 className="font-semibold text-red-900 dark:text-red-100">Don&apos;t</h3>
               </div>
               <ul className="space-y-3 text-red-800 dark:text-red-200">
                 <li className="flex items-start space-x-2">
@@ -569,7 +569,7 @@ export default function TimelinePage() {
                 <tr>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">status</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">'completed' | 'current' | 'pending' | 'error' | 'warning'</td>
+                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">&apos;completed&apos; | &apos;current&apos; | &apos;pending&apos; | &apos;error&apos; | &apos;warning&apos;</td>
                   <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Event status indicator</td>
                 </tr>
                 <tr>

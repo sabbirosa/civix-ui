@@ -101,7 +101,7 @@ export default function ComponentsPage() {
         <Card className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-primary-200 dark:border-primary-800">
           <CardContent className="pt-6">
             <blockquote className="text-lg italic text-gray-700 dark:text-gray-300 text-center">
-              "Empowering governments to build digital services that are accessible, inclusive, and user-friendly for all citizens."
+              &ldquo;Empowering governments to build digital services that are accessible, inclusive, and user-friendly for all citizens.&rdquo;
             </blockquote>
           </CardContent>
         </Card>
