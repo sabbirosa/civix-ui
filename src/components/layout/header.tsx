@@ -13,6 +13,7 @@ interface HeaderProps {
 
 const navigationItems = [
   { name: "Components", href: "/components", namebn: "কম্পোনেন্ট" },
+  { name: "Design System", href: "/design-system", namebn: "ডিজাইন সিস্টেম" },
   { name: "Guidelines", href: "/guidelines", namebn: "নির্দেশিকা" },
   { name: "Templates", href: "/templates", namebn: "টেমপ্লেট" },
   { name: "Resources", href: "/resources", namebn: "রিসোর্স" },
