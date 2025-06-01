@@ -6,15 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  ArrowRight,
-  Building,
-  Check,
-  CheckCircle,
-  FileText,
-  User,
-  Users,
-  X,
-  XCircle,
+    ArrowRight,
+    Building,
+    Check,
+    FileText,
+    User,
+    Users,
+    X,
+    XCircle
 } from "lucide-react";
 import { useState } from "react";
 
@@ -938,169 +937,202 @@ export default function FormRegistrationPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                <h3 className="font-semibold text-green-900 dark:text-green-100">
-                  Do
-                </h3>
-              </div>
-              <ul className="space-y-3 text-green-800 dark:text-green-200">
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Use clear, descriptive labels for all form fields</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>
-                    Provide both English and Bengali labels when required
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Validate data on both client and server side</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Group related information into logical sections</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Provide clear success and error feedback</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <h3 className="font-semibold text-red-900 dark:text-red-100">
-                  Don&apos;t
-                </h3>
-              </div>
-              <ul className="space-y-3 text-red-800 dark:text-red-200">
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Create overly long forms without section breaks</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Use technical jargon without explanations</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Skip validation or provide unclear error messages</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Collect unnecessary personal information</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Ignore accessibility requirements</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
+              <Check className="h-5 w-5 mr-2" />
+              Do
+            </h3>
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Use clear, descriptive labels for all form fields</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>
+                  Provide both English and Bengali labels when required
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Validate data on both client and server side</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Group related information into logical sections</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Provide clear success and error feedback</span>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
+              <XCircle className="h-5 w-5 mr-2" />
+              Don&apos;t
+            </h3>
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Create overly long forms without section breaks</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Use technical jargon without explanations</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Skip validation or provide unclear error messages</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Collect unnecessary personal information</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Ignore accessibility requirements</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       {/* Component Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Component Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Form Registration component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Element
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Purpose
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Required
-                  </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Example
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Form Header
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Title and description
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    User Registration Interface
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Yes
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Handles citizen registration and account creation for government services
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Citizen Registration / নাগরিক নিবন্ধন
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                      High
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Complex implementation with validation, verification, and security features
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Registration Types
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Individual citizen, Business entity, Organization, Government employee
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Different registration flows for various user types and service requirements
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Verification System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Email verification, SMS verification, Document verification, Identity validation
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multi-step verification to ensure authentic citizen registration
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Data Collection
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Personal details, Contact information, Identity documents, Address verification
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Comprehensive data collection for government service access and verification
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Security Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Data encryption, Secure storage, Password policies, Two-factor authentication
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Comprehensive security measures for citizen data protection
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Screen reader support, Keyboard navigation, Focus management, ARIA labels
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures registration accessibility for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual registration forms and instructions for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Compliance Standards
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Data protection laws, Government regulations, Privacy standards, GDPR compliance
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Meets government and international data protection standards
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Section Headers
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Group related fields
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Citizen portal signup, Service registration, Account creation, Profile setup
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Recommended
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Personal Information / ব্যক্তিগত তথ্য
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Field Labels
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Bilingual field identification
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Yes
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Full Name / পূর্ণ নাম *
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Validation
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Data validation and error display
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Yes
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Required field validation
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Progress Indicator
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Multi-step form progress
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    For multi-step
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Step 1 of 3
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential entry point for citizens accessing government digital services
                   </td>
                 </tr>
               </tbody>

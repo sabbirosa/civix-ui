@@ -42,6 +42,136 @@ const componentCategories = [
   },
 ];
 
+const componentTypes = [
+  {
+    category: "Basic Components",
+    components: [
+      {
+        name: "Button",
+        type: "Interactive Element",
+        usage: "User Actions",
+        accessibility: "Keyboard & Screen Reader",
+        complexity: "Low",
+        variants: "Primary, Secondary, Outline, Ghost, Danger, Link",
+      },
+      {
+        name: "Input",
+        type: "Form Control",
+        usage: "Data Entry",
+        accessibility: "Labels & Validation",
+        complexity: "Low",
+        variants: "Text, Email, Password, Number",
+      },
+      {
+        name: "Textarea",
+        type: "Form Control",
+        usage: "Multi-line Text",
+        accessibility: "Labels & ARIA",
+        complexity: "Low",
+        variants: "Standard, Resizable",
+      },
+      {
+        name: "Label",
+        type: "Form Element",
+        usage: "Form Labeling",
+        accessibility: "For Attribute",
+        complexity: "Low",
+        variants: "Required, Optional",
+      },
+      {
+        name: "Card",
+        type: "Container",
+        usage: "Content Grouping",
+        accessibility: "Semantic Structure",
+        complexity: "Low",
+        variants: "Basic, With Header, Interactive",
+      }
+    ]
+  },
+  {
+    category: "Complex Components",
+    components: [
+      {
+        name: "File Upload",
+        type: "Interactive Element",
+        usage: "Document Upload",
+        accessibility: "Drag & Drop Alternatives",
+        complexity: "High",
+        variants: "Single, Multiple, Drag & Drop",
+      },
+      {
+        name: "Password Field",
+        type: "Form Control",
+        usage: "Secure Input",
+        accessibility: "Screen Reader Safe",
+        complexity: "Medium",
+        variants: "With Strength, Toggle Visibility",
+      },
+      {
+        name: "Form Registration",
+        type: "Form Container",
+        usage: "Citizen Registration",
+        accessibility: "Complete Form Flow",
+        complexity: "High",
+        variants: "Single Page, Multi-step",
+      },
+      {
+        name: "Alerts",
+        type: "Feedback Element",
+        usage: "User Notifications",
+        accessibility: "ARIA Live Regions",
+        complexity: "Medium",
+        variants: "Success, Warning, Error, Info",
+      },
+      {
+        name: "Payment",
+        type: "Transaction Interface",
+        usage: "Payment Processing",
+        accessibility: "Secure & Accessible",
+        complexity: "High",
+        variants: "Card, Bank Transfer, Mobile",
+      }
+    ]
+  },
+  {
+    category: "Interactive Components",
+    components: [
+      {
+        name: "Checklist",
+        type: "Task Interface",
+        usage: "Progress Tracking",
+        accessibility: "Checkbox Semantics",
+        complexity: "Medium",
+        variants: "Simple, With Progress",
+      },
+      {
+        name: "Radio Group",
+        type: "Selection Control",
+        usage: "Single Selection",
+        accessibility: "Radio Group Semantics",
+        complexity: "Medium",
+        variants: "Vertical, Horizontal, Card Style",
+      },
+      {
+        name: "Step Form",
+        type: "Form Wizard",
+        usage: "Multi-step Processes",
+        accessibility: "Step Navigation",
+        complexity: "High",
+        variants: "Linear, Non-linear",
+      },
+      {
+        name: "Timeline",
+        type: "Data Visualization",
+        usage: "Process Status",
+        accessibility: "Chronological Structure",
+        complexity: "Medium",
+        variants: "Vertical, Horizontal",
+      }
+    ]
+  }
+];
+
 const quickLinks = [
   { name: "Guidelines", href: "/guidelines", description: "Design principles and best practices" },
   { name: "Templates", href: "/templates", description: "Pre-built page templates" },
@@ -165,6 +295,102 @@ export default function ComponentsPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Component Types Overview */}
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Component Types & Characteristics</h2>
+          <p className="text-gray-600 dark:text-gray-300">
+            Comprehensive overview of all components, their types, usage patterns, and key characteristics.
+          </p>
+        </div>
+        
+        <div className="space-y-6">
+          {componentTypes.map((section) => (
+            <Card key={section.category} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-gray-900 dark:text-gray-100">{section.category}</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
+                  Component specifications and characteristics for this category
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead className="bg-gray-50 dark:bg-gray-900">
+                      <tr>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[120px]">
+                          Component
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[100px]">
+                          Type
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[120px]">
+                          Usage
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[140px]">
+                          Accessibility
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[90px]">
+                          Complexity
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[180px]">
+                          Variants
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                      {section.components.map((component) => (
+                        <tr key={component.name} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                          <td className="px-3 py-4 whitespace-nowrap">
+                            <Link
+                              href={`/components/${component.name.toLowerCase().replace(/\s+/g, '-')}`}
+                              className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+                            >
+                              {component.name}
+                            </Link>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
+                            <div className="max-w-[100px]">
+                              {component.type}
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-600 dark:text-gray-300">
+                            <div className="max-w-[120px]">
+                              {component.usage}
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-600 dark:text-gray-300">
+                            <div className="max-w-[140px]">
+                              {component.accessibility}
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 whitespace-nowrap">
+                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                              component.complexity === 'Low' 
+                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                                : component.complexity === 'Medium'
+                                ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                            }`}>
+                              {component.complexity}
+                            </span>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-600 dark:text-gray-300">
+                            <div className="max-w-[180px] break-words">
+                              {component.variants}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
 
       {/* Component Categories */}
       <div className="space-y-6">

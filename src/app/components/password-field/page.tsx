@@ -5,17 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  AlertTriangle,
-  Check,
-  CheckCircle,
-  Eye,
-  EyeOff,
-  Lock,
-  Shield,
-  Star,
-  User,
-  X,
-  XCircle,
+    AlertTriangle,
+    Check,
+    CheckCircle,
+    Eye,
+    EyeOff,
+    Lock,
+    Shield,
+    Star,
+    User,
+    X,
+    XCircle,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -395,12 +395,12 @@ export default function PasswordFieldPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
               <Check className="h-5 w-5 mr-2" />
               Do
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 Provide clear password requirements upfront
@@ -427,12 +427,12 @@ export default function PasswordFieldPage() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
               <XCircle className="h-5 w-5 mr-2" />
               Don&apos;t
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
               <li className="flex items-start">
                 <XCircle className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 Allow weak passwords in sensitive systems
@@ -465,127 +465,143 @@ export default function PasswordFieldPage() {
       {/* API Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          API Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Password Field component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Prop
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Type
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Default
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  value
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  &quot;&quot;
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Current password value
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  onChange
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  (value: string) =&gt; void
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  -
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Password change handler
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  showStrengthIndicator
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Show password strength indicator
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  requirements
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  ValidationRule[]
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  []
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Password validation rules
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  placeholder
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  -
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Input placeholder text
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  disabled
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Disable the password input
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  autoComplete
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  &quot;new-password&quot;
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Browser autocomplete behavior
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Secure Input Field
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Captures sensitive text input with enhanced security features
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      Medium
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Moderate complexity with security features and strength validation
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Security Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Visibility toggle, Strength meter, Auto-clear, Secure masking
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Provides secure password input with user-friendly visibility controls
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    State Management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Hidden, Visible, Focus, Error, Disabled, Validation
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Clear visual feedback for security states and user interactions
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Validation Rules
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Minimum length, Character requirements, Strength scoring, Custom rules
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures strong password policies for government security standards
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Screen reader support, Keyboard navigation, ARIA descriptions, Focus management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures secure access for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual labels and validation messages for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Typography scale, Icon system, Security indicators
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and security standards
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Security Standards
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    OWASP compliance, Government security guidelines, Encryption ready
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Meets government security requirements for citizen data protection
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    User registration, Login forms, Password reset, Security settings
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for secure authentication in government service applications
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

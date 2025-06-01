@@ -5,11 +5,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  AlertCircle,
   Banknote,
   Check,
   CheckCircle,
   CreditCard,
   DollarSign,
+  Loader2,
   Lock,
   Receipt,
   Shield,
@@ -18,7 +20,119 @@ import {
   X,
   XCircle,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// Toast notification component
+interface ToastProps {
+  message: string;
+  type: "success" | "error" | "info";
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+const Toast = ({ message, type, isVisible, onClose }: ToastProps) => {
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, onClose]);
+
+  if (!isVisible) return null;
+
+  const bgColor =
+    type === "success"
+      ? "bg-green-500"
+      : type === "error"
+        ? "bg-red-500"
+        : "bg-blue-500";
+  const icon =
+    type === "success" ? (
+      <CheckCircle className="h-5 w-5" />
+    ) : type === "error" ? (
+      <AlertCircle className="h-5 w-5" />
+    ) : (
+      <Loader2 className="h-5 w-5" />
+    );
+
+  return (
+    <div
+      className={`fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2 transform transition-all duration-300 ease-in-out z-50 ${
+        isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+      }`}
+    >
+      {icon}
+      <span className="font-medium">{message}</span>
+      <button onClick={onClose} className="ml-2 hover:bg-white/20 rounded p-1">
+        <X className="h-4 w-4" />
+      </button>
+    </div>
+  );
+};
+
+// Payment status component
+interface PaymentStatusProps {
+  status: "idle" | "processing" | "success" | "error";
+  method: string;
+  amount: number;
+}
+
+const PaymentStatus = ({ status, method, amount }: PaymentStatusProps) => {
+  if (status === "idle") return null;
+
+  const statusConfig = {
+    processing: {
+      icon: <Loader2 className="h-12 w-12 animate-spin text-blue-500" />,
+      title: "Processing Payment...",
+      subtitle: `Processing ${method} payment of ৳${amount}`,
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
+      borderColor: "border-blue-200 dark:border-blue-800",
+    },
+    success: {
+      icon: <CheckCircle className="h-12 w-12 text-green-500" />,
+      title: "Payment Successful!",
+      subtitle: `৳${amount} paid successfully via ${method}`,
+      bgColor: "bg-green-50 dark:bg-green-900/20",
+      borderColor: "border-green-200 dark:border-green-800",
+    },
+    error: {
+      icon: <AlertCircle className="h-12 w-12 text-red-500" />,
+      title: "Payment Failed",
+      subtitle: `Failed to process ${method} payment. Please try again. / ${method} দিয়ে পেমেন্ট ব্যর্থ।`,
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      borderColor: "border-red-200 dark:border-red-800",
+    },
+  };
+
+  const config = statusConfig[status];
+
+  return (
+    <div
+      className={`${config.bgColor} ${config.borderColor} border rounded-lg p-6 transition-all duration-500 ease-in-out transform scale-100`}
+    >
+      <div className="flex flex-col items-center text-center space-y-4">
+        <div className="transform transition-all duration-300 ease-in-out">
+          {config.icon}
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            {config.title}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">
+            {config.subtitle}
+          </p>
+        </div>
+        {status === "success" && (
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Transaction ID: TXN{Date.now()}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default function PaymentPage() {
   const [selectedMethod, setSelectedMethod] = useState("bkash");
@@ -33,6 +147,21 @@ export default function PaymentPage() {
     pin: "",
   });
 
+  // Feedback state management
+  const [paymentStatus, setPaymentStatus] = useState<
+    "idle" | "processing" | "success" | "error"
+  >("idle");
+  const [toast, setToast] = useState<{
+    isVisible: boolean;
+    message: string;
+    type: "success" | "error" | "info";
+  }>({
+    isVisible: false,
+    message: "",
+    type: "info",
+  });
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   const services = [
     { name: "Passport Fee / পাসপোর্ট ফি", amount: 3000, code: "PS-001" },
     {
@@ -43,13 +172,94 @@ export default function PaymentPage() {
     { name: "Trade License / ট্রেড লাইসেন্স", amount: 1000, code: "TL-003" },
   ];
 
-  const handlePayment = (method: string) => {
-    console.log(`Payment initiated with ${method}`);
-    alert(`Payment successful with ${method}! / ${method} দিয়ে পেমেন্ট সফল!`);
+  const totalAmount = services.reduce((sum, s) => sum + s.amount, 0);
+
+  const showToast = (message: string, type: "success" | "error" | "info") => {
+    setToast({
+      isVisible: true,
+      message,
+      type,
+    });
+  };
+
+  const hideToast = () => {
+    setToast((prev) => ({ ...prev, isVisible: false }));
+  };
+
+  const handlePayment = async (method: string) => {
+    // Start processing
+    setPaymentStatus("processing");
+    setIsButtonDisabled(true);
+
+    showToast("Initiating payment...", "info");
+
+    try {
+      // Simulate payment processing delay
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Simulate random success/failure for demo purposes
+      const isSuccess = Math.random() > 0.2; // 80% success rate
+
+      if (isSuccess) {
+        setPaymentStatus("success");
+        showToast(
+          `Payment successful with ${method}! / ${method} দিয়ে পেমেন্ট সফল!`,
+          "success"
+        );
+
+        // Reset after 5 seconds
+        setTimeout(() => {
+          setPaymentStatus("idle");
+          setIsButtonDisabled(false);
+        }, 5000);
+      } else {
+        setPaymentStatus("error");
+        showToast(
+          `Payment failed with ${method}. Please try again. / ${method} দিয়ে পেমেন্ট ব্যর্থ।`,
+          "error"
+        );
+
+        // Reset after 3 seconds
+        setTimeout(() => {
+          setPaymentStatus("idle");
+          setIsButtonDisabled(false);
+        }, 3000);
+      }
+    } catch {
+      setPaymentStatus("error");
+      showToast("An error occurred during payment processing.", "error");
+
+      setTimeout(() => {
+        setPaymentStatus("idle");
+        setIsButtonDisabled(false);
+      }, 3000);
+    }
+  };
+
+  const validateForm = () => {
+    if (selectedMethod === "card") {
+      return (
+        cardData.cardNumber &&
+        cardData.expiryDate &&
+        cardData.cvv &&
+        cardData.cardHolder
+      );
+    } else if (selectedMethod === "bkash" || selectedMethod === "nagad") {
+      return mobileData.phoneNumber && mobileData.pin;
+    }
+    return true;
   };
 
   return (
     <div className="space-y-8">
+      {/* Toast Notification */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+      />
+
       {/* Header */}
       <div className="space-y-4">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
@@ -84,24 +294,61 @@ export default function PaymentPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-3 gap-3">
-                <Button variant="outline" className="h-16 flex-col text-xs">
+                <Button
+                  variant="outline"
+                  className="h-16 flex-col text-xs"
+                  disabled={isButtonDisabled}
+                  onClick={() => {
+                    setSelectedMethod("bkash");
+                    handlePayment("bkash");
+                  }}
+                >
                   <Smartphone className="h-5 w-5 mb-1" />
                   bKash
                 </Button>
-                <Button variant="outline" className="h-16 flex-col text-xs">
+                <Button
+                  variant="outline"
+                  className="h-16 flex-col text-xs"
+                  disabled={isButtonDisabled}
+                  onClick={() => {
+                    setSelectedMethod("nagad");
+                    handlePayment("nagad");
+                  }}
+                >
                   <Smartphone className="h-5 w-5 mb-1" />
                   Nagad
                 </Button>
-                <Button variant="outline" className="h-16 flex-col text-xs">
+                <Button
+                  variant="outline"
+                  className="h-16 flex-col text-xs"
+                  disabled={isButtonDisabled}
+                  onClick={() => {
+                    setSelectedMethod("card");
+                    handlePayment("card");
+                  }}
+                >
                   <CreditCard className="h-5 w-5 mb-1" />
                   Card
                 </Button>
               </div>
               <div className="text-center pt-4 border-t">
                 <div className="text-lg font-semibold">Total: ৳500</div>
-                <Button className="w-full mt-3">
-                  <Shield className="h-4 w-4 mr-2" />
-                  Proceed to Payment
+                <Button
+                  className="w-full mt-3"
+                  disabled={isButtonDisabled}
+                  onClick={() => handlePayment("default")}
+                >
+                  {paymentStatus === "processing" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <Shield className="h-4 w-4 mr-2" />
+                      Proceed to Payment
+                    </>
+                  )}
                 </Button>
               </div>
             </CardContent>
@@ -130,6 +377,15 @@ export default function PaymentPage() {
               </p>
             </CardHeader>
             <CardContent className="space-y-6">
+              {/* Payment Status Display */}
+              {paymentStatus !== "idle" && (
+                <PaymentStatus
+                  status={paymentStatus}
+                  method={selectedMethod}
+                  amount={totalAmount}
+                />
+              )}
+
               {/* Service List */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900 dark:text-gray-100">
@@ -157,9 +413,7 @@ export default function PaymentPage() {
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center font-bold text-lg">
                     <span>Total Amount / মোট পরিমাণ</span>
-                    <span>
-                      ৳{services.reduce((sum, s) => sum + s.amount, 0)}
-                    </span>
+                    <span>৳{totalAmount}</span>
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     Processing Fee Included / প্রসেসিং ফি অন্তর্ভুক্ত
@@ -177,6 +431,7 @@ export default function PaymentPage() {
                     variant={selectedMethod === "bkash" ? "primary" : "outline"}
                     className="h-20 flex-col"
                     onClick={() => setSelectedMethod("bkash")}
+                    disabled={isButtonDisabled}
                   >
                     <Smartphone className="h-6 w-6 mb-2" />
                     <span className="font-medium">bKash</span>
@@ -186,6 +441,7 @@ export default function PaymentPage() {
                     variant={selectedMethod === "nagad" ? "primary" : "outline"}
                     className="h-20 flex-col"
                     onClick={() => setSelectedMethod("nagad")}
+                    disabled={isButtonDisabled}
                   >
                     <Smartphone className="h-6 w-6 mb-2" />
                     <span className="font-medium">Nagad</span>
@@ -195,6 +451,7 @@ export default function PaymentPage() {
                     variant={selectedMethod === "card" ? "primary" : "outline"}
                     className="h-20 flex-col"
                     onClick={() => setSelectedMethod("card")}
+                    disabled={isButtonDisabled}
                   >
                     <CreditCard className="h-6 w-6 mb-2" />
                     <span className="font-medium">Card Payment</span>
@@ -227,6 +484,7 @@ export default function PaymentPage() {
                             phoneNumber: e.target.value,
                           })
                         }
+                        disabled={isButtonDisabled}
                       />
                     </div>
                     <div>
@@ -239,6 +497,7 @@ export default function PaymentPage() {
                         onChange={(e) =>
                           setMobileData({ ...mobileData, pin: e.target.value })
                         }
+                        disabled={isButtonDisabled}
                       />
                     </div>
                   </div>
@@ -263,6 +522,7 @@ export default function PaymentPage() {
                             cardNumber: e.target.value,
                           })
                         }
+                        disabled={isButtonDisabled}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -278,6 +538,7 @@ export default function PaymentPage() {
                               expiryDate: e.target.value,
                             })
                           }
+                          disabled={isButtonDisabled}
                         />
                       </div>
                       <div>
@@ -289,6 +550,7 @@ export default function PaymentPage() {
                           onChange={(e) =>
                             setCardData({ ...cardData, cvv: e.target.value })
                           }
+                          disabled={isButtonDisabled}
                         />
                       </div>
                     </div>
@@ -306,6 +568,7 @@ export default function PaymentPage() {
                             cardHolder: e.target.value,
                           })
                         }
+                        disabled={isButtonDisabled}
                       />
                     </div>
                   </div>
@@ -314,12 +577,21 @@ export default function PaymentPage() {
 
               <Button
                 onClick={() => handlePayment(selectedMethod)}
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 size="large"
+                disabled={isButtonDisabled || !validateForm()}
               >
-                <Lock className="h-4 w-4 mr-2" />
-                Pay ৳{services.reduce((sum, s) => sum + s.amount, 0)} / ৳
-                {services.reduce((sum, s) => sum + s.amount, 0)} পরিশোধ করুন
+                {paymentStatus === "processing" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Processing Payment...
+                  </>
+                ) : (
+                  <>
+                    <Lock className="h-4 w-4 mr-2" />
+                    Pay ৳{totalAmount} / ৳{totalAmount} পরিশোধ করুন
+                  </>
+                )}
               </Button>
             </CardContent>
           </Card>
@@ -357,7 +629,11 @@ export default function PaymentPage() {
                 <div className="space-y-3">
                   <div>
                     <Label htmlFor="bkash-number">bKash Number</Label>
-                    <Input id="bkash-number" placeholder="01XXXXXXXXX" />
+                    <Input
+                      id="bkash-number"
+                      placeholder="01XXXXXXXXX"
+                      disabled={isButtonDisabled}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="bkash-pin">PIN</Label>
@@ -365,11 +641,24 @@ export default function PaymentPage() {
                       id="bkash-pin"
                       type="password"
                       placeholder="Enter your bKash PIN"
+                      disabled={isButtonDisabled}
                     />
                   </div>
                 </div>
-                <Button className="w-full bg-pink-600 hover:bg-pink-700">
-                  Pay with bKash
+                <Button
+                  className="w-full bg-pink-600 hover:bg-pink-700 disabled:opacity-50"
+                  disabled={isButtonDisabled}
+                  onClick={() => handlePayment("bkash")}
+                >
+                  {paymentStatus === "processing" &&
+                  selectedMethod === "bkash" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Pay with bKash"
+                  )}
                 </Button>
                 <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
                   Secured by bKash SSL encryption
@@ -397,7 +686,11 @@ export default function PaymentPage() {
                 <div className="space-y-3">
                   <div>
                     <Label htmlFor="nagad-number">Nagad Number</Label>
-                    <Input id="nagad-number" placeholder="01XXXXXXXXX" />
+                    <Input
+                      id="nagad-number"
+                      placeholder="01XXXXXXXXX"
+                      disabled={isButtonDisabled}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="nagad-pin">PIN</Label>
@@ -405,11 +698,24 @@ export default function PaymentPage() {
                       id="nagad-pin"
                       type="password"
                       placeholder="Enter your Nagad PIN"
+                      disabled={isButtonDisabled}
                     />
                   </div>
                 </div>
-                <Button className="w-full bg-orange-600 hover:bg-orange-700">
-                  Pay with Nagad
+                <Button
+                  className="w-full bg-orange-600 hover:bg-orange-700 disabled:opacity-50"
+                  disabled={isButtonDisabled}
+                  onClick={() => handlePayment("nagad")}
+                >
+                  {paymentStatus === "processing" &&
+                  selectedMethod === "nagad" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Pay with Nagad"
+                  )}
                 </Button>
                 <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
                   Secured by Nagad encryption
@@ -471,18 +777,36 @@ export default function PaymentPage() {
                   <Input
                     id="reference"
                     placeholder="Enter transaction reference number"
+                    disabled={isButtonDisabled}
                   />
                 </div>
                 <div>
                   <Label htmlFor="bank-amount">
                     Amount Transferred / স্থানান্তরিত পরিমাণ *
                   </Label>
-                  <Input id="bank-amount" placeholder="৳4,050" />
+                  <Input
+                    id="bank-amount"
+                    placeholder="৳4,050"
+                    disabled={isButtonDisabled}
+                  />
                 </div>
               </div>
-              <Button className="w-full">
-                <Receipt className="h-4 w-4 mr-2" />
-                Confirm Bank Transfer / ব্যাংক ট্রান্সফার নিশ্চিত করুন
+              <Button
+                className="w-full"
+                disabled={isButtonDisabled}
+                onClick={() => handlePayment("bank")}
+              >
+                {paymentStatus === "processing" && selectedMethod === "bank" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Receipt className="h-4 w-4 mr-2" />
+                    Confirm Bank Transfer / ব্যাংক ট্রান্সফার নিশ্চিত করুন
+                  </>
+                )}
               </Button>
             </CardContent>
           </Card>
@@ -626,157 +950,220 @@ export default function PaymentPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                <h3 className="font-semibold text-green-900 dark:text-green-100">
-                  Do
-                </h3>
-              </div>
-              <ul className="space-y-3 text-green-800 dark:text-green-200">
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Clearly display all fees and charges upfront</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Provide secure payment processing with encryption</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Offer multiple payment method options</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Generate confirmation receipts immediately</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Support bilingual payment interfaces</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <h3 className="font-semibold text-red-900 dark:text-red-100">
-                  Don&apos;t
-                </h3>
-              </div>
-              <ul className="space-y-3 text-red-800 dark:text-red-200">
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>
-                    Store payment card details without proper encryption
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Hide additional fees until the final step</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Use unsecured payment processing methods</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>
-                    Force users to create accounts for one-time payments
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Ignore payment failure handling and recovery</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
+              <Check className="h-5 w-5 mr-2" />
+              Do
+            </h3>
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Clearly display all fees and charges upfront</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Provide secure payment processing with encryption</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Offer multiple payment method options</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Generate confirmation receipts immediately</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Support bilingual payment interfaces</span>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
+              <XCircle className="h-5 w-5 mr-2" />
+              Don&apos;t
+            </h3>
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>
+                  Store payment card details without proper encryption
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Hide additional fees until the final step</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Use unsecured payment processing methods</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>
+                  Force users to create accounts for one-time payments
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Ignore payment failure handling and recovery</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       {/* Component Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Component Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Payment component
+          for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Payment Method
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Description
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Security
-                  </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Usage
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    bKash/Nagad
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Mobile banking payment
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Payment Processing Interface
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    SSL encrypted
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Handles secure payment processing for government fees and
+                    services
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Most popular for small payments
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                      High
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Complex implementation with security, validation, and
+                    payment gateway integration
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Payment Methods
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Credit/Debit cards, Mobile banking, Internet banking,
+                    Digital wallets
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multiple payment options to accommodate different citizen
+                    preferences
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Security Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    PCI compliance, SSL encryption, Fraud detection, Secure
+                    tokenization
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Comprehensive security measures for government payment
+                    processing
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Transaction States
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Pending, Processing, Success, Failed, Cancelled, Refunded
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Clear transaction status tracking and user feedback
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Screen reader support, Keyboard navigation, Focus
+                    management, ARIA labels
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures payment accessibility for all citizens including
+                    those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual payment interface and transaction messages for
+                    government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Compliance Standards
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    PCI DSS, Government security guidelines, Data protection
+                    regulations
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Meets government and international payment security
+                    standards
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Typography scale, Icon system, Security
+                    indicators
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government
+                    branding
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Credit/Debit Card
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    International card payment
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Service fees, License payments, Fine payments, Tax payments,
+                    Application fees
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    PCI DSS compliant
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Higher value transactions
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Bank Transfer
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Direct bank account transfer
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Bank level security
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Large amount payments
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    Internet Banking
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Online banking portal
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Bank authentication
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Trusted by traditional users
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for processing government service payments and
+                    fees
                   </td>
                 </tr>
               </tbody>

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -287,12 +286,12 @@ export default function ButtonPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
               <Check className="h-5 w-5 mr-2" />
               Do
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 Use primary buttons for the main action on a page
@@ -319,12 +318,12 @@ export default function ButtonPage() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
               <XCircle className="h-5 w-5 mr-2" />
               Don&apos;t
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
               <li className="flex items-start">
                 <XCircle className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 Use multiple primary buttons on the same page
@@ -357,114 +356,149 @@ export default function ButtonPage() {
       {/* API Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          API Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Button component
+          for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Prop
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Type
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Default
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  variant
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "primary" | "secondary" | "outline" | "ghost" | "danger" |
-                  "link"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "primary"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  The visual style of the button
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  size
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "small" | "medium" | "large" | "xl"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "medium"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  The size of the button
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  loading
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Shows loading spinner and disables the button
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  icon
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  ReactNode
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Icon to display in the button
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  iconPosition
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "left" | "right"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  "left"
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Position of the icon relative to text
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  disabled
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Disables the button
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Interactive Element
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Triggers actions and navigates users through workflows
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                      Low
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Simple to implement and customize, suitable for basic UI
+                    needs
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Variant Options
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Primary, Secondary, Outline, Ghost, Danger, Link
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multiple styles to establish visual hierarchy and context
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Size Options
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Small, Medium, Large, Extra Large
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Adapts to different interface contexts and importance levels
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    State Management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Default, Hover, Focus, Loading, Disabled
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Provides clear feedback for user interactions and system
+                    states
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Icon Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Left/Right positioning, Optional
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Enhances meaning and improves visual recognition
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Keyboard navigation, Focus indicators, Screen reader support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures usability for all citizens including those with
+                    disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual text support for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Typography scale, Spacing units
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government
+                    branding
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Form submission, Navigation, Actions, Downloads
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Primary interface element for user-initiated actions in
+                    government services
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

@@ -351,12 +351,12 @@ export default function LabelPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
               <Check className="h-5 w-5 mr-2" />
               Do
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 Always associate labels with form controls using htmlFor
@@ -383,12 +383,12 @@ export default function LabelPage() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
               <XCircle className="h-5 w-5 mr-2" />
               Don&apos;t
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
               <li className="flex items-start">
                 <XCircle className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 Use vague or ambiguous label text
@@ -421,85 +421,159 @@ export default function LabelPage() {
       {/* API Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          API Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Label component for
+          implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Prop
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Type
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Default
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  htmlFor
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Associates the label with a form control by ID
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  className
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Additional CSS classes for styling
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  children
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  ReactNode
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  The label content (text, icons, etc.)
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  asChild
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Render as child component instead of label element
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Form Label Element
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Provides clear identification and context for form inputs
+                    and controls
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                      Low
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Simple implementation with focus on accessibility and
+                    typography
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Label Types
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Required indicators, Optional labels, Descriptive text,
+                    Contextual hints
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Different label variations to communicate field requirements
+                    and context
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    State Management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Default, Associated, Required, Disabled, Error
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Visual states that reflect the associated form
+                    control&apos;s status
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Association Methods
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    htmlFor attribute, Nested controls, ARIA labelling,
+                    Programmatic linking
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Proper accessibility linking between labels and form
+                    controls
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Screen reader support, Click-to-focus, Keyboard navigation,
+                    ARIA attributes
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures form accessibility for all citizens including those
+                    with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual label text support for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Typography scale, Color tokens, Spacing units, Required
+                    indicators
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government
+                    branding
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Typography Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Font weights, Size variations, Color variations, Text
+                    truncation
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Flexible typography options to establish proper visual
+                    hierarchy
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Form fields, Checkboxes, Radio buttons, File uploads, Input
+                    groups
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for all form elements in government service
+                    applications
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

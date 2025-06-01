@@ -3,22 +3,22 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Activity,
-  AlertCircle,
-  Archive,
-  Building,
-  Calendar,
-  Check,
-  CheckCircle,
-  Clock,
-  Eye,
-  FileText,
-  MessageSquare,
-  Truck,
-  UserCheck,
-  Users,
-  X,
-  XCircle
+    Activity,
+    AlertCircle,
+    Archive,
+    Building,
+    Calendar,
+    Check,
+    CheckCircle,
+    Clock,
+    Eye,
+    FileText,
+    MessageSquare,
+    Truck,
+    UserCheck,
+    Users,
+    X,
+    XCircle
 } from "lucide-react";
 
 // Inline Timeline Components for demonstration
@@ -535,60 +535,140 @@ export default function TimelinePage() {
 
       {/* Component Reference */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Component Reference</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          Component Specifications
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Timeline component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Component</th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Props</th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Type</th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Description</th>
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">TimelineItem</td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">title</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">string</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Event title or headline</td>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Data Visualization Element
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Displays chronological events and process status in a structured timeline format
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      Medium
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Moderate complexity with data formatting and visual state management
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Layout Options
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Vertical timeline, Horizontal timeline, Alternating layout, Compact view
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Flexible arrangements to suit different content types and space constraints
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Event States
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Completed, In progress, Pending, Failed, Cancelled
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Clear visual indicators for different event and process states
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Content Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Dates, Descriptions, Actions, Status updates, Media attachments
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Rich content support for comprehensive event documentation
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Sequential navigation, Screen reader support, ARIA labels, Time announcements
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures timeline accessibility for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual event descriptions and date formatting for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Icon system, Typography scale, Connector lines
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government branding
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Interactive Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Expandable details, Clickable events, Hover states, Focus indicators
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Enhanced interactivity for detailed event exploration
+                  </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">description</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">string</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Event description or details</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">timestamp</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">string</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Event date and time</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">status</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">&apos;completed&apos; | &apos;current&apos; | &apos;pending&apos; | &apos;error&apos; | &apos;warning&apos;</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Event status indicator</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">icon</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">React.Component</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Custom icon component (optional)</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">details</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">string</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Additional event details (optional)</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">action</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">React.ReactNode</td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">Action buttons or components (optional)</td>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Application tracking, Process status, Event history, Progress visualization
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for showing chronological progress in government service applications
+                  </td>
                 </tr>
               </tbody>
             </table>

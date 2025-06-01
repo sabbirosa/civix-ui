@@ -1,25 +1,25 @@
 "use client";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Check,
-  CheckCircle,
-  Edit,
-  FileCheck,
-  FileText,
-  Mail,
-  MessageSquare,
-  Star,
-  User,
-  XCircle,
+    Check,
+    CheckCircle,
+    Edit,
+    FileCheck,
+    FileText,
+    Mail,
+    MessageSquare,
+    Star,
+    User,
+    XCircle,
 } from "lucide-react";
 
 export default function TextareaPage() {
@@ -361,12 +361,12 @@ export default function TextareaPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
               <Check className="h-5 w-5 mr-2" />
               Do
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 Provide clear, descriptive labels and helpful placeholder text
@@ -393,12 +393,12 @@ export default function TextareaPage() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
               <XCircle className="h-5 w-5 mr-2" />
               Don&apos;t
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
               <li className="flex items-start">
                 <XCircle className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 Use textareas for single-line inputs or short responses
@@ -431,113 +431,143 @@ export default function TextareaPage() {
       {/* API Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          API Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Textarea component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Prop
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Type
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Default
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  rows
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  number
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  3
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Number of visible text lines
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  placeholder
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Placeholder text shown when textarea is empty
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  maxLength
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  number
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Maximum number of characters allowed
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  required
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Marks the textarea as required for form validation
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  disabled
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  boolean
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  false
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Disables the textarea field
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  error
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  undefined
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Error message to display below the textarea
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multi-line Text Input
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Captures longer text input for descriptions, comments, and detailed information
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                      Low
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Simple to implement with basic text handling and validation features
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Resize Behavior
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Auto-resize, Manual resize, Fixed height, Minimum/Maximum heights
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Flexible sizing options to accommodate varying content lengths
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    State Management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Default, Focus, Error, Disabled, Character count, Word count
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Clear visual feedback and content tracking for user interactions
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Validation Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Character limits, Word limits, Required validation, Pattern matching
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures text input meets government form requirements and standards
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Label association, Screen reader support, Keyboard navigation, ARIA descriptions
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures usability for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual text input and placeholder support for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Typography scale, Border styles, Spacing units
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government branding
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Content Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Rich text support, Line counting, Auto-save, Spell check
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Enhanced text editing capabilities for comprehensive user input
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Comments, Descriptions, Feedback, Applications, Long-form text
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for collecting detailed information in government service applications
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

@@ -3,18 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Award,
-  BarChart3,
-  Check,
-  CheckCircle,
-  Clock,
-  FileText,
-  PieChart,
-  Target,
-  TrendingDown,
-  TrendingUp,
-  Users,
-  XCircle,
+    Award,
+    BarChart3,
+    Check,
+    CheckCircle,
+    Clock,
+    FileText,
+    PieChart,
+    Target,
+    TrendingDown,
+    TrendingUp,
+    Users,
+    XCircle,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -600,12 +600,12 @@ export default function StatisticsPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
               <Check className="h-5 w-5 mr-2" />
               Do
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 Use clear, descriptive titles and labels for all data points
@@ -632,12 +632,12 @@ export default function StatisticsPage() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
               <XCircle className="h-5 w-5 mr-2" />
               Don&apos;t
             </h3>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
               <li className="flex items-start">
                 <XCircle className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 Display too many metrics without clear hierarchy
@@ -667,102 +667,146 @@ export default function StatisticsPage() {
         </div>
       </div>
 
-      {/* API Reference */}
+      {/* Component Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Component Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Statistics component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Component
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Props
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Type
-                </th>
-                <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  StatCard
-                </td>
-                <td className="p-4 font-mono text-sm text-gray-600 dark:text-gray-300">
-                  title
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  The statistic title
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  StatCard
-                </td>
-                <td className="p-4 font-mono text-sm text-gray-600 dark:text-gray-300">
-                  value
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  The main statistic value
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  StatCard
-                </td>
-                <td className="p-4 font-mono text-sm text-gray-600 dark:text-gray-300">
-                  trend
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  &quot;up&quot; | &quot;down&quot;
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Trend direction indicator
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  ProgressBar
-                </td>
-                <td className="p-4 font-mono text-sm text-gray-600 dark:text-gray-300">
-                  percentage
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  number
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Completion percentage (0-100)
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-mono text-sm text-gray-900 dark:text-gray-100">
-                  ProgressBar
-                </td>
-                <td className="p-4 font-mono text-sm text-gray-600 dark:text-gray-300">
-                  color
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  string
-                </td>
-                <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
-                  Color theme for progress bar
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
+                  </th>
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Data Visualization Element
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Displays numerical data and metrics in visually appealing and accessible formats
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      Medium
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Moderate complexity with data formatting and visual representation features
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Chart Types
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bar charts, Line graphs, Pie charts, Progress indicators, Metric cards
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multiple visualization options for different data types and use cases
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Data Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Real-time updates, Historical trends, Comparative analysis, Filtering options
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Comprehensive data handling for government metrics and performance indicators
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Interactive Elements
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Hover details, Click-to-drill-down, Tooltip information, Export functionality
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Enhanced user interaction for detailed data exploration and analysis
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Screen reader support, Keyboard navigation, Alternative text, Data tables
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures data accessibility for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual labels, legends, and data formatting for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Color tokens, Typography scale, Chart styling, Animation system
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government branding
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Responsive Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Mobile-friendly charts, Adaptive layouts, Touch interactions, Scalable graphics
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Optimized for various screen sizes and mobile government service applications
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Performance dashboards, Service metrics, Budget visualization, Population data, Progress tracking
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for displaying government data and performance metrics to citizens
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

@@ -2,26 +2,26 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  CheckCircle,
-  FileText,
-  Shield,
-  Star,
-  User,
-  X,
-  XCircle,
+    ArrowLeft,
+    ArrowRight,
+    Check,
+    CheckCircle,
+    FileText,
+    Shield,
+    Star,
+    User,
+    X,
+    XCircle,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -918,165 +918,206 @@ export default function StepFormPage() {
           Usage Guidelines
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                <h3 className="font-semibold text-green-900 dark:text-green-100">
-                  Do
-                </h3>
-              </div>
-              <ul className="space-y-3 text-green-800 dark:text-green-200">
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>
-                    Break complex forms into logical, digestible steps
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Validate each step before allowing progression</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>
-                    Provide clear progress indicators and completion status
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Allow users to save progress and return later</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <Check className="h-4 w-4 mt-0.5 text-green-600" />
-                  <span>Use consistent bilingual labeling throughout</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-2 mb-4">
-                <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <h3 className="font-semibold text-red-900 dark:text-red-100">
-                  Don&apos;t
-                </h3>
-              </div>
-              <ul className="space-y-3 text-red-800 dark:text-red-200">
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>
-                    Create steps with too many fields or overwhelming content
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Allow progression without proper validation</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Hide the overall progress from users</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Force users to complete forms in a single session</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <X className="h-4 w-4 mt-0.5 text-red-600" />
-                  <span>Use technical jargon without explanations</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="space-y-4 p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 flex items-center">
+              <Check className="h-5 w-5 mr-2" />
+              Do
+            </h3>
+            <ul className="space-y-3 text-green-700 dark:text-green-200">
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>
+                  Break complex forms into logical, digestible steps
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Validate each step before allowing progression</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>
+                  Provide clear progress indicators and completion status
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Allow users to save progress and return later</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <Check className="h-4 w-4 mt-0.5 text-green-600" />
+                <span>Use consistent bilingual labeling throughout</span>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 flex items-center">
+              <XCircle className="h-5 w-5 mr-2" />
+              Don&apos;t
+            </h3>
+            <ul className="space-y-3 text-red-700 dark:text-red-200">
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>
+                  Create steps with too many fields or overwhelming content
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Allow progression without proper validation</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Hide the overall progress from users</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Force users to complete forms in a single session</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <X className="h-4 w-4 mt-0.5 text-red-600" />
+                <span>Use technical jargon without explanations</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* API Reference */}
+      {/* Component Reference */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Component Reference
+          Component Specifications
         </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Detailed specifications and characteristics of the Step Form component for implementation guidance.
+        </p>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Component
+            <table className="w-full min-w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Specification
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Props
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Details
                   </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-                    Description
+                  <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">
+                    Purpose & Usage
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-                <tr>
-                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">
-                    StepForm
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Component Type
                   </td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">
-                    currentStep
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Multi-Step Form Interface
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    number
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Breaks complex forms into manageable steps with progress tracking
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Currently active step
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Complexity Level
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                      High
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Complex implementation with state management, validation, and navigation logic
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Navigation Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Step indicators, Progress bar, Next/Previous buttons, Step validation
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Clear navigation and progress tracking for complex government application processes
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    State Management
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Form data persistence, Step validation, Progress tracking, Auto-save
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Maintains form state across steps and prevents data loss
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Validation System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Step-by-step validation, Conditional fields, Cross-step validation, Error handling
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures data quality and provides guided error correction
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Accessibility Features
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Keyboard navigation, Screen reader support, Focus management, ARIA labels
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Ensures form accessibility for all citizens including those with disabilities
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Language Support
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    English, Bengali (বাংলা)
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Bilingual form content and navigation for government applications
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Design System
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Progress indicators, Button styles, Layout grid, Animation system
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Consistent with CivixUI design principles and government branding
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Mobile Optimization
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Touch-friendly navigation, Responsive layout, Adaptive step indicators
+                  </td>
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Optimized for mobile government service applications
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">
-                    steps
+                  <td className="p-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                    Use Cases
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    array
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Application forms, Registration processes, Multi-stage workflows, Document submission
                   </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Array of step objects with id, title, description
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">
-                    onStepChange
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    function
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Callback when step changes
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">
-                    validateStep
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    function
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Optional validation function for steps
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4 font-mono text-gray-600 dark:text-gray-300">
-                    showProgress
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    boolean
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">
-                    Show progress bar (default: true)
+                  <td className="p-4 text-sm text-gray-600 dark:text-gray-300">
+                    Essential for complex government service applications requiring multiple information steps
                   </td>
                 </tr>
               </tbody>
