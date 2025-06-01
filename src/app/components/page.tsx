@@ -15,18 +15,35 @@ import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   AlertTriangle,
+  ArrowRight,
+  Award,
+  BookOpen,
+  Briefcase,
+  Building,
   CheckCircle,
+  CheckSquare,
+  Circle,
+  Clock,
+  CreditCard,
   Download,
   Eye,
   EyeOff,
   File,
+  FileText,
+  Globe,
+  GraduationCap,
   Heart,
   Info,
+  MapPin,
   MessageSquare,
   Share2,
+  Shield,
   Star,
   ThumbsUp,
+  TrendingUp,
   Upload,
+  User,
+  Users,
   X,
   XCircle,
 } from "lucide-react";
@@ -753,6 +770,954 @@ const PaymentDemo = () => {
   );
 };
 
+const ChecklistDemo = () => {
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
+  const checklistItems = [
+    {
+      id: "nid",
+      label: "জাতীয় পরিচয়পত্রের কপি",
+      labelEn: "National ID Copy",
+      required: true,
+    },
+    {
+      id: "birth_cert",
+      label: "জন্ম নিবন্ধন সনদ",
+      labelEn: "Birth Certificate",
+      required: true,
+    },
+    {
+      id: "address_proof",
+      label: "ঠিকানার প্রমাণপত্র",
+      labelEn: "Address Proof",
+      required: true,
+    },
+    {
+      id: "photo",
+      label: "পাসপোর্ট সাইজ ছবি",
+      labelEn: "Passport Size Photo",
+      required: true,
+    },
+    {
+      id: "income_cert",
+      label: "আয়ের সনদপত্র",
+      labelEn: "Income Certificate",
+      required: false,
+    },
+    {
+      id: "bank_statement",
+      label: "ব্যাংক স্টেটমেন্ট",
+      labelEn: "Bank Statement",
+      required: false,
+    },
+  ];
+
+  const handleCheck = (id: string) => {
+    setCheckedItems((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const completedRequired = checklistItems.filter(
+    (item) => item.required && checkedItems[item.id]
+  ).length;
+  const totalRequired = checklistItems.filter((item) => item.required).length;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          Required Documents / প্রয়োজনীয় কাগজপত্র
+        </h3>
+        <div className="text-sm text-gray-500 dark:text-gray-400">
+          {completedRequired}/{totalRequired} completed
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {checklistItems.map((item) => (
+          <div
+            key={item.id}
+            className={`flex items-center space-x-3 p-3 rounded-lg border transition-colors ${
+              checkedItems[item.id]
+                ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
+                : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+            }`}
+          >
+            <button
+              onClick={() => handleCheck(item.id)}
+              className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
+                checkedItems[item.id]
+                  ? "bg-green-500 border-green-500 text-white"
+                  : "border-gray-300 dark:border-gray-600 hover:border-green-400"
+              }`}
+            >
+              {checkedItems[item.id] && <CheckSquare className="w-4 h-4" />}
+            </button>
+            <div className="flex-1">
+              <div className="flex items-center space-x-2">
+                <span
+                  className={`font-medium ${checkedItems[item.id] ? "text-green-800 dark:text-green-200" : "text-gray-900 dark:text-gray-100"}`}
+                >
+                  {item.label}
+                </span>
+                {item.required && (
+                  <span className="text-xs bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200 px-2 py-1 rounded">
+                    Required
+                  </span>
+                )}
+              </div>
+              <p
+                className={`text-sm ${checkedItems[item.id] ? "text-green-600 dark:text-green-400" : "text-gray-500 dark:text-gray-400"}`}
+              >
+                {item.labelEn}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className="flex items-center space-x-2 mb-2">
+          <Info className="w-5 h-5 text-blue-600" />
+          <span className="font-medium text-blue-800 dark:text-blue-200">
+            Progress
+          </span>
+        </div>
+        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div
+            className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${(completedRequired / totalRequired) * 100}%` }}
+          />
+        </div>
+        <p className="text-sm text-blue-700 dark:text-blue-300 mt-2">
+          {completedRequired === totalRequired
+            ? "All required documents checked!"
+            : `${totalRequired - completedRequired} required documents remaining`}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const RadioGroupDemo = () => {
+  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedEducation, setSelectedEducation] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+
+  const genderOptions = [
+    { value: "male", label: "পুরুষ", labelEn: "Male" },
+    { value: "female", label: "মহিলা", labelEn: "Female" },
+    { value: "other", label: "অন্যান্য", labelEn: "Other" },
+  ];
+
+  const educationOptions = [
+    { value: "primary", label: "প্রাথমিক", labelEn: "Primary" },
+    { value: "secondary", label: "মাধ্যমিক", labelEn: "Secondary" },
+    {
+      value: "higher_secondary",
+      label: "উচ্চ মাধ্যমিক",
+      labelEn: "Higher Secondary",
+    },
+    { value: "bachelor", label: "স্নাতক", labelEn: "Bachelor" },
+    { value: "master", label: "স্নাতকোত্তর", labelEn: "Master" },
+    { value: "phd", label: "পিএইচডি", labelEn: "PhD" },
+  ];
+
+  const districtOptions = [
+    { value: "dhaka", label: "ঢাকা", labelEn: "Dhaka" },
+    { value: "chittagong", label: "চট্টগ্রাম", labelEn: "Chittagong" },
+    { value: "sylhet", label: "সিলেট", labelEn: "Sylhet" },
+    { value: "rajshahi", label: "রাজশাহী", labelEn: "Rajshahi" },
+    { value: "khulna", label: "খুলনা", labelEn: "Khulna" },
+    { value: "barishal", label: "বরিশাল", labelEn: "Barishal" },
+    { value: "rangpur", label: "রংপুর", labelEn: "Rangpur" },
+    { value: "mymensingh", label: "ময়মনসিংহ", labelEn: "Mymensingh" },
+  ];
+
+  const RadioGroup = ({
+    options,
+    value,
+    onChange,
+    name,
+    title,
+  }: {
+    options: { value: string; label: string; labelEn: string }[];
+    value: string;
+    onChange: (value: string) => void;
+    name: string;
+    title: string;
+  }) => (
+    <div className="space-y-3">
+      <h4 className="font-medium text-gray-900 dark:text-gray-100">{title}</h4>
+      <div className="space-y-2">
+        {options.map(
+          (option: { value: string; label: string; labelEn: string }) => (
+            <label
+              key={option.value}
+              className={`flex items-center space-x-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                value === option.value
+                  ? "bg-primary-50 dark:bg-primary-900/20 border-primary-200 dark:border-primary-800"
+                  : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              <div
+                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  value === option.value
+                    ? "border-primary-500 bg-primary-500"
+                    : "border-gray-300 dark:border-gray-600"
+                }`}
+              >
+                {value === option.value && (
+                  <Circle className="w-2 h-2 fill-current text-white" />
+                )}
+              </div>
+              <input
+                type="radio"
+                name={name}
+                value={option.value}
+                checked={value === option.value}
+                onChange={(e) => onChange(e.target.value)}
+                className="sr-only"
+              />
+              <div>
+                <div
+                  className={`font-medium ${value === option.value ? "text-primary-800 dark:text-primary-200" : "text-gray-900 dark:text-gray-100"}`}
+                >
+                  {option.label}
+                </div>
+                <div
+                  className={`text-sm ${value === option.value ? "text-primary-600 dark:text-primary-400" : "text-gray-500 dark:text-gray-400"}`}
+                >
+                  {option.labelEn}
+                </div>
+              </div>
+            </label>
+          )
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <RadioGroup
+        options={genderOptions}
+        value={selectedGender}
+        onChange={setSelectedGender}
+        name="gender"
+        title="Gender / লিঙ্গ"
+      />
+      <RadioGroup
+        options={educationOptions}
+        value={selectedEducation}
+        onChange={setSelectedEducation}
+        name="education"
+        title="Education / শিক্ষাগত যোগ্যতা"
+      />
+      <RadioGroup
+        options={districtOptions}
+        value={selectedDistrict}
+        onChange={setSelectedDistrict}
+        name="district"
+        title="District / জেলা"
+      />
+    </div>
+  );
+};
+
+const StepFormDemo = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  // const [formData, setFormData] = useState({
+  //   personal: {},
+  //   documents: {},
+  //   verification: {},
+  //   payment: {},
+  // });
+
+  const steps = [
+    { id: 1, title: "Personal Info", titleBn: "ব্যক্তিগত তথ্য", icon: User },
+    { id: 2, title: "Documents", titleBn: "কাগজপত্র", icon: FileText },
+    { id: 3, title: "Verification", titleBn: "যাচাইকরণ", icon: Shield },
+    { id: 4, title: "Payment", titleBn: "পেমেন্ট", icon: CreditCard },
+  ];
+
+  const nextStep = () => {
+    if (currentStep < steps.length) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const StepIndicator = () => (
+    <div className="flex items-center justify-between mb-8">
+      {steps.map((step, index) => {
+        const isActive = currentStep === step.id;
+        const isCompleted = currentStep > step.id;
+        const IconComponent = step.icon;
+
+        return (
+          <div key={step.id} className="flex items-center">
+            <div
+              className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-colors ${
+                isCompleted
+                  ? "bg-green-500 border-green-500 text-white"
+                  : isActive
+                    ? "bg-primary-500 border-primary-500 text-white"
+                    : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-400"
+              }`}
+            >
+              {isCompleted ? (
+                <CheckCircle className="w-6 h-6" />
+              ) : (
+                <IconComponent className="w-6 h-6" />
+              )}
+            </div>
+            <div className="ml-3 hidden md:block">
+              <div
+                className={`font-medium ${isActive || isCompleted ? "text-gray-900 dark:text-gray-100" : "text-gray-500 dark:text-gray-400"}`}
+              >
+                {step.title}
+              </div>
+              <div
+                className={`text-sm ${isActive || isCompleted ? "text-gray-600 dark:text-gray-300" : "text-gray-400"}`}
+              >
+                {step.titleBn}
+              </div>
+            </div>
+            {index < steps.length - 1 && (
+              <ArrowRight
+                className={`w-6 h-6 mx-4 ${isCompleted ? "text-green-500" : "text-gray-300 dark:text-gray-600"}`}
+              />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const StepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              Personal Information / ব্যক্তিগত তথ্য
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label>Full Name / পূর্ণ নাম</Label>
+                <Input placeholder="Enter your full name" />
+              </div>
+              <div>
+                <Label>Father&apos;s Name / পিতার নাম</Label>
+                <Input placeholder="Enter father's name" />
+              </div>
+              <div>
+                <Label>Mother&apos;s Name / মাতার নাম</Label>
+                <Input placeholder="Enter mother's name" />
+              </div>
+              <div>
+                <Label>Date of Birth / জন্ম তারিখ</Label>
+                <Input type="date" />
+              </div>
+            </div>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              Document Upload / কাগজপত্র আপলোড
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Upload NID Copy
+                </p>
+              </div>
+              <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Upload Photo
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              Verification / যাচাইকরণ
+            </h3>
+            <div className="text-center py-8">
+              <Shield className="mx-auto h-16 w-16 text-green-500 mb-4" />
+              <p className="text-lg text-gray-900 dark:text-gray-100 mb-2">
+                OTP Verification Required
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                We&apos;ve sent a verification code to your mobile number
+              </p>
+              <Input
+                placeholder="Enter 6-digit OTP"
+                className="max-w-xs mx-auto"
+              />
+            </div>
+          </div>
+        );
+      case 4:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              Payment / পেমেন্ট
+            </h3>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+              <div className="flex justify-between items-center mb-4">
+                <span className="font-medium">Service Fee:</span>
+                <span className="text-lg font-bold">৳500</span>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <Button variant="outline" className="h-16">
+                  <CreditCard className="w-6 h-6 mr-2" />
+                  bKash
+                </Button>
+                <Button variant="outline" className="h-16">
+                  <CreditCard className="w-6 h-6 mr-2" />
+                  Nagad
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <StepIndicator />
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6">
+        <StepContent />
+      </div>
+      <div className="flex justify-between">
+        <Button
+          variant="outline"
+          onClick={prevStep}
+          disabled={currentStep === 1}
+        >
+          Previous
+        </Button>
+        <Button onClick={nextStep} disabled={currentStep === steps.length}>
+          {currentStep === steps.length ? "Submit" : "Next"}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const TimelineDemo = () => {
+  const [selectedApplication, setSelectedApplication] = useState("app001");
+
+  const applications = {
+    app001: {
+      title: "Trade License Application",
+      titleBn: "ট্রেড লাইসেন্স আবেদন",
+      status: "In Progress",
+      timeline: [
+        {
+          id: 1,
+          title: "Application Submitted",
+          titleBn: "আবেদন জমা দেওয়া হয়েছে",
+          description: "Application received and initial review started",
+          date: "2024-01-15 10:30 AM",
+          status: "completed",
+          icon: FileText,
+        },
+        {
+          id: 2,
+          title: "Document Verification",
+          titleBn: "নথি যাচাইকরণ",
+          description: "All submitted documents are being verified",
+          date: "2024-01-16 02:15 PM",
+          status: "completed",
+          icon: CheckCircle,
+        },
+        {
+          id: 3,
+          title: "Field Inspection",
+          titleBn: "মাঠ পরিদর্শন",
+          description: "On-site verification by authorized officer",
+          date: "2024-01-18 11:00 AM",
+          status: "current",
+          icon: MapPin,
+        },
+        {
+          id: 4,
+          title: "Final Approval",
+          titleBn: "চূড়ান্ত অনুমোদন",
+          description: "Final review and approval process",
+          date: "Pending",
+          status: "pending",
+          icon: Award,
+        },
+        {
+          id: 5,
+          title: "License Issued",
+          titleBn: "লাইসেন্স জারি",
+          description: "Trade license certificate will be issued",
+          date: "Pending",
+          status: "pending",
+          icon: Download,
+        },
+      ],
+    },
+    app002: {
+      title: "Birth Certificate Application",
+      titleBn: "জন্ম নিবন্ধন সনদ আবেদন",
+      status: "Approved",
+      timeline: [
+        {
+          id: 1,
+          title: "Application Submitted",
+          titleBn: "আবেদন জমা দেওয়া হয়েছে",
+          description: "Online application successfully submitted",
+          date: "2024-01-10 09:00 AM",
+          status: "completed",
+          icon: FileText,
+        },
+        {
+          id: 2,
+          title: "Payment Confirmed",
+          titleBn: "পেমেন্ট নিশ্চিত",
+          description: "Application fee payment received",
+          date: "2024-01-10 09:15 AM",
+          status: "completed",
+          icon: CreditCard,
+        },
+        {
+          id: 3,
+          title: "Document Review",
+          titleBn: "নথি পর্যালোচনা",
+          description: "Supporting documents reviewed and approved",
+          date: "2024-01-12 03:30 PM",
+          status: "completed",
+          icon: CheckCircle,
+        },
+        {
+          id: 4,
+          title: "Certificate Generated",
+          titleBn: "সনদ তৈরি",
+          description: "Birth certificate has been generated",
+          date: "2024-01-13 10:00 AM",
+          status: "completed",
+          icon: Award,
+        },
+        {
+          id: 5,
+          title: "Ready for Collection",
+          titleBn: "সংগ্রহের জন্য প্রস্তুত",
+          description: "Certificate ready for pickup or delivery",
+          date: "2024-01-13 02:00 PM",
+          status: "completed",
+          icon: Download,
+        },
+      ],
+    },
+  };
+
+  const currentApp =
+    applications[selectedApplication as keyof typeof applications];
+
+  return (
+    <div className="space-y-6">
+      {/* Application Selector */}
+      <div className="flex space-x-4 mb-6">
+        {Object.entries(applications).map(([key, app]) => (
+          <Button
+            key={key}
+            variant={selectedApplication === key ? "primary" : "outline"}
+            onClick={() => setSelectedApplication(key)}
+            className="flex-1"
+          >
+            {app.title}
+          </Button>
+        ))}
+      </div>
+
+      {/* Application Header */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              {currentApp.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              {currentApp.titleBn}
+            </p>
+          </div>
+          <div
+            className={`px-3 py-1 rounded-full text-sm font-medium ${
+              currentApp.status === "Approved"
+                ? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200"
+                : "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"
+            }`}
+          >
+            {currentApp.status}
+          </div>
+        </div>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Application ID: {selectedApplication.toUpperCase()}
+        </p>
+      </div>
+
+      {/* Timeline */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">
+          Application Timeline / আবেদনের সময়রেখা
+        </h4>
+
+        <div className="relative">
+          {currentApp.timeline.map((item, index) => {
+            const IconComponent = item.icon;
+            const isLast = index === currentApp.timeline.length - 1;
+
+            return (
+              <div
+                key={item.id}
+                className="relative flex items-start space-x-4 pb-8"
+              >
+                {!isLast && (
+                  <div
+                    className={`absolute left-6 top-12 w-0.5 h-full ${
+                      item.status === "completed"
+                        ? "bg-green-500"
+                        : "bg-gray-300 dark:bg-gray-600"
+                    }`}
+                  />
+                )}
+
+                <div
+                  className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${
+                    item.status === "completed"
+                      ? "bg-green-500 border-green-500 text-white"
+                      : item.status === "current"
+                        ? "bg-blue-500 border-blue-500 text-white animate-pulse"
+                        : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-400"
+                  }`}
+                >
+                  <IconComponent className="w-6 h-6" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h5
+                      className={`font-medium ${
+                        item.status === "completed" || item.status === "current"
+                          ? "text-gray-900 dark:text-gray-100"
+                          : "text-gray-500 dark:text-gray-400"
+                      }`}
+                    >
+                      {item.title}
+                    </h5>
+                    <span
+                      className={`text-sm ${
+                        item.status === "completed" || item.status === "current"
+                          ? "text-gray-600 dark:text-gray-300"
+                          : "text-gray-400"
+                      }`}
+                    >
+                      {item.date}
+                    </span>
+                  </div>
+                  <p
+                    className={`text-sm mt-1 ${
+                      item.status === "completed" || item.status === "current"
+                        ? "text-gray-600 dark:text-gray-300"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {item.titleBn}
+                  </p>
+                  <p
+                    className={`text-sm mt-1 ${
+                      item.status === "completed" || item.status === "current"
+                        ? "text-gray-500 dark:text-gray-400"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const GovernmentServicesDemo = () => {
+  const services = [
+    {
+      category: "Citizen Services",
+      categoryBn: "নাগরিক সেবা",
+      icon: Users,
+      services: [
+        {
+          name: "Birth Certificate",
+          nameBn: "জন্ম নিবন্ধন",
+          icon: FileText,
+          status: "Online",
+        },
+        {
+          name: "Death Certificate",
+          nameBn: "মৃত্যু সনদ",
+          icon: FileText,
+          status: "Online",
+        },
+        {
+          name: "Marriage Certificate",
+          nameBn: "বিবাহ সনদ",
+          icon: FileText,
+          status: "Online",
+        },
+        {
+          name: "Divorce Certificate",
+          nameBn: "তালাক সনদ",
+          icon: FileText,
+          status: "Offline",
+        },
+      ],
+    },
+    {
+      category: "Business Services",
+      categoryBn: "ব্যবসায়িক সেবা",
+      icon: Briefcase,
+      services: [
+        {
+          name: "Trade License",
+          nameBn: "ট্রেড লাইসেন্স",
+          icon: Award,
+          status: "Online",
+        },
+        {
+          name: "VAT Registration",
+          nameBn: "ভ্যাট নিবন্ধন",
+          icon: Building,
+          status: "Online",
+        },
+        {
+          name: "Import License",
+          nameBn: "আমদানি লাইসেন্স",
+          icon: Globe,
+          status: "Offline",
+        },
+        {
+          name: "Export License",
+          nameBn: "রপ্তানি লাইসেন্স",
+          icon: Globe,
+          status: "Online",
+        },
+      ],
+    },
+    {
+      category: "Education Services",
+      categoryBn: "শিক্ষা সেবা",
+      icon: GraduationCap,
+      services: [
+        {
+          name: "HSC Certificate",
+          nameBn: "এইচএসসি সনদ",
+          icon: BookOpen,
+          status: "Online",
+        },
+        {
+          name: "SSC Certificate",
+          nameBn: "এসএসসি সনদ",
+          icon: BookOpen,
+          status: "Online",
+        },
+        {
+          name: "Scholarship Application",
+          nameBn: "বৃত্তির আবেদন",
+          icon: Award,
+          status: "Online",
+        },
+        {
+          name: "University Admission",
+          nameBn: "বিশ্ববিদ্যালয় ভর্তি",
+          icon: GraduationCap,
+          status: "Online",
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {services.map((category, categoryIndex) => {
+        const CategoryIcon = category.icon;
+        return (
+          <Card
+            key={categoryIndex}
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+          >
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2 text-gray-900 dark:text-gray-100">
+                <CategoryIcon className="w-6 h-6 text-primary-500" />
+                <div>
+                  <div>{category.category}</div>
+                  <div className="text-sm font-normal text-gray-600 dark:text-gray-300">
+                    {category.categoryBn}
+                  </div>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {category.services.map((service, serviceIndex) => {
+                  const ServiceIcon = service.icon;
+                  return (
+                    <div
+                      key={serviceIndex}
+                      className="flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <ServiceIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                        <div>
+                          <div className="font-medium text-gray-900 dark:text-gray-100">
+                            {service.name}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-300">
+                            {service.nameBn}
+                          </div>
+                        </div>
+                      </div>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full ${
+                          service.status === "Online"
+                            ? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200"
+                            : "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        }`}
+                      >
+                        {service.status}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
+  );
+};
+
+const StatisticsDemo = () => {
+  const stats = [
+    {
+      title: "Total Applications",
+      titleBn: "মোট আবেদন",
+      value: "১,২৩,৪৫৬",
+      change: "+১২%",
+      changeType: "increase",
+      icon: FileText,
+      color: "blue",
+    },
+    {
+      title: "Approved Today",
+      titleBn: "আজ অনুমোদিত",
+      value: "৮৯২",
+      change: "+৮%",
+      changeType: "increase",
+      icon: CheckCircle,
+      color: "green",
+    },
+    {
+      title: "Pending Review",
+      titleBn: "পর্যালোচনাধীন",
+      value: "৪,৫৬৭",
+      change: "-৫%",
+      changeType: "decrease",
+      icon: Clock,
+      color: "yellow",
+    },
+    {
+      title: "Revenue Generated",
+      titleBn: "রাজস্ব আদায়",
+      value: "৳২,৩৪,৫৬,৭৮৯",
+      change: "+১৫%",
+      changeType: "increase",
+      icon: TrendingUp,
+      color: "purple",
+    },
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colors = {
+      blue: "bg-blue-500 text-blue-100",
+      green: "bg-green-500 text-green-100",
+      yellow: "bg-yellow-500 text-yellow-100",
+      purple: "bg-purple-500 text-purple-100",
+    };
+    return colors[color as keyof typeof colors] || colors.blue;
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {stats.map((stat, index) => {
+        const IconComponent = stat.icon;
+        return (
+          <Card
+            key={index}
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div
+                  className={`p-3 rounded-lg ${getColorClasses(stat.color)}`}
+                >
+                  <IconComponent className="w-6 h-6" />
+                </div>
+                <span
+                  className={`text-sm font-medium ${
+                    stat.changeType === "increase"
+                      ? "text-green-600 dark:text-green-400"
+                      : "text-red-600 dark:text-red-400"
+                  }`}
+                >
+                  {stat.change}
+                </span>
+              </div>
+              <div className="space-y-1">
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  {stat.value}
+                </p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  {stat.title}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">
+                  {stat.titleBn}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
+  );
+};
+
 export default function ComponentsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -950,6 +1915,54 @@ export default function ComponentsPage() {
                 </Button>
               </div>
             </div>
+          </InteractiveDemo>
+
+          {/* Document Checklist */}
+          <InteractiveDemo
+            title="Document Checklist / নথি চেকলিস্ট"
+            description="Interactive checklist for required documents with progress tracking"
+          >
+            <ChecklistDemo />
+          </InteractiveDemo>
+
+          {/* Radio Button Groups */}
+          <InteractiveDemo
+            title="Radio Button Groups / রেডিও বাটন গ্রুপ"
+            description="Radio button groups for single selection options with bilingual support"
+          >
+            <RadioGroupDemo />
+          </InteractiveDemo>
+
+          {/* Step-by-Step Form */}
+          <InteractiveDemo
+            title="Multi-Step Form / ধাপে ধাপে ফর্ম"
+            description="Step-by-step form with progress indicator and validation"
+          >
+            <StepFormDemo />
+          </InteractiveDemo>
+
+          {/* Status Timeline */}
+          <InteractiveDemo
+            title="Application Timeline / আবেদনের সময়রেখা"
+            description="Visual timeline showing application status and progress"
+          >
+            <TimelineDemo />
+          </InteractiveDemo>
+
+          {/* Government Services Overview */}
+          <InteractiveDemo
+            title="Government Services / সরকারি সেবাসমূহ"
+            description="Comprehensive overview of available government services by category"
+          >
+            <GovernmentServicesDemo />
+          </InteractiveDemo>
+
+          {/* Statistics Dashboard */}
+          <InteractiveDemo
+            title="Statistics Dashboard / পরিসংখ্যান ড্যাশবোর্ড"
+            description="Key performance indicators and statistics for government services"
+          >
+            <StatisticsDemo />
           </InteractiveDemo>
 
           {/* Best Practices Section */}
