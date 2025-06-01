@@ -108,7 +108,7 @@ export default function Home() {
       <section className="container mx-auto px-4 py-16 lg:py-24">
         <div className="text-center max-w-4xl mx-auto">
           <div className="flex justify-center mb-8">
-            <div className="h-20 w-20 rounded-2xl bg-gradient-to-r from-bangladesh-green to-primary-500 flex items-center justify-center shadow-lg">
+            <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-bangladesh-green to-primary-700 flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-2xl">CX</span>
             </div>
           </div>
@@ -202,14 +202,15 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary-500 dark:bg-primary-600 text-white py-16">
+      <section className="bg-primary-700 dark:bg-primary-900 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Ready to Build Better Government Services?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Start using our component guidelines to create accessible, user-friendly
-            e-government applications that serve all citizens effectively.
+            Start using our component guidelines to create accessible,
+            user-friendly e-government applications that serve all citizens
+            effectively.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="secondary" size="xl">

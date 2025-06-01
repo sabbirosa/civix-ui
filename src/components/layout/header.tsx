@@ -29,13 +29,18 @@ export function Header({ className }: HeaderProps) {
   };
 
   return (
-    <header className={cn("sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60 border-gray-200 dark:border-gray-700", className)}>
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60 border-gray-200 dark:border-gray-700",
+        className
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-bangladesh-green to-primary-500 flex items-center justify-center">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-bangladesh-green to-primary-700 flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-sm">CX</span>
               </div>
               <div className="hidden sm:block">
@@ -43,7 +48,9 @@ export function Header({ className }: HeaderProps) {
                   {language === "en" ? "Civix UI" : "সিভিক্স UI"}
                 </div>
                 <div className="text-xs text-secondary-600 dark:text-gray-300">
-                  {language === "en" ? "Component Guidelines" : "কম্পোনেন্ট নির্দেশিকা"}
+                  {language === "en"
+                    ? "Component Guidelines"
+                    : "কম্পোনেন্ট নির্দেশিকা"}
                 </div>
               </div>
             </Link>
@@ -75,9 +82,13 @@ export function Header({ className }: HeaderProps) {
               size="small"
               onClick={toggleTheme}
               className="flex items-center space-x-1"
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-label={
+                theme === "light"
+                  ? "Switch to dark mode"
+                  : "Switch to light mode"
+              }
             >
-              {theme === 'light' ? (
+              {theme === "light" ? (
                 <Moon className="h-4 w-4" />
               ) : (
                 <Sun className="h-4 w-4" />
@@ -128,19 +139,23 @@ export function Header({ className }: HeaderProps) {
                 </Link>
               ))}
               <div className="px-3 py-2">
-                <Button variant="ghost" size="small" className="w-full justify-start">
+                <Button
+                  variant="ghost"
+                  size="small"
+                  className="w-full justify-start"
+                >
                   <Search className="h-4 w-4 mr-2" />
                   {language === "en" ? "Search" : "খুঁজুন"}
                 </Button>
               </div>
               <div className="px-3 py-2">
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   className="w-full justify-start"
                   onClick={toggleTheme}
                 >
-                  {theme === 'light' ? (
+                  {theme === "light" ? (
                     <>
                       <Moon className="h-4 w-4 mr-2" />
                       {language === "en" ? "Dark Mode" : "ডার্ক মোড"}
@@ -159,4 +174,4 @@ export function Header({ className }: HeaderProps) {
       </div>
     </header>
   );
-} 
+}
