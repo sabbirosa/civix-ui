@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Civix UI - E-Government Design System
 
-## Getting Started
+A modern, accessible, and inclusive design system for building government digital services.
 
-First, run the development server:
+## 🎯 Mission
+
+Supporting government agencies worldwide by providing standardized guidelines, reusable UI components, and best-practice checklists for web applications that serve all citizens, including those with
+limited digital literacy, disabilities, or access to modern devices.
+
+## 🌟 Key Features
+
+- **Accessibility First**: WCAG 2.1 AA compliant components
+- **Mobile-Responsive**: Optimized for all devices and screen sizes  
+- **Dual Language Support**: Built-in internationalization capabilities
+- **Performance Optimized**: Fast loading and smooth interactions
+- **Modern Stack**: Built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4
+
+## 🚀 Quick Start
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/civix-ui.git
+
+# Navigate to the project directory
+cd civix-ui
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the design system in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+civix-ui/
+├── src/
+│   ├── app/                 # Next.js 13+ app directory
+│   │   ├── components/      # Interactive component showcase
+│   │   ├── guidelines/      # Design principles and standards
+│   │   ├── templates/       # Ready-to-use page templates
+│   │   ├── resources/       # Documentation and assets
+│   │   └── checklist/       # Implementation checklist
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/             # Base UI components
+│   │   └── layout/         # Layout components
+│   ├── contexts/           # React contexts (theme, etc.)
+│   └── lib/                # Utility functions
+├── public/                 # Static assets
+└── docs/                   # Additional documentation
+```
 
-## Learn More
+## 🎨 Design Tokens
 
-To learn more about Next.js, take a look at the following resources:
+### Colors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Our color system is designed for high contrast and accessibility:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```css
+/* Primary Colors - Government Blue */
+--primary-50: #f0f9ff;
+--primary-500: #0ea5e9;      // Civix UI Blue
+--primary-900: #0c4a6e;
 
-## Deploy on Vercel
+/* Secondary Colors - Neutral Grays */
+--secondary-50: #f8fafc;
+--secondary-500: #64748b;
+--secondary-900: #0f172a;
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+/* Semantic Colors */
+--success-500: #22c55e;      // Success Green
+--warning-500: #f59e0b;      // Warning Amber  
+--danger-500: #ef4444;       // Error Red
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Typography
+
+- **Primary Font**: Inter (Latin scripts)
+- **Secondary Font**: System fonts for optimal performance
+- **Font Sizes**: Fluid scale from 12px to 72px
+- **Line Heights**: Optimized for readability (1.4-1.6)
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 15 with App Router
+- **UI Library**: React 19 with TypeScript
+- **Styling**: Tailwind CSS v4 with CSS-first configuration
+- **Components**: Custom components with Radix UI primitives
+- **Form Handling**: React Hook Form with Zod validation
+- **Icons**: Lucide React
+- **Development**: ESLint, TypeScript, and Turbopack
+
+## 📖 Documentation
+
+### Component Categories
+
+1. **Form Components**: Input fields, buttons, checkboxes, radio buttons
+2. **Navigation**: Headers, menus, breadcrumbs, pagination
+3. **Data Display**: Tables, cards, lists, badges
+4. **Feedback**: Alerts, notifications, loading states
+5. **Layout**: Grid system, containers, spacing utilities
+
+### Accessibility Features
+
+- **Keyboard Navigation**: Full keyboard support for all interactive elements
+- **Screen Reader Support**: ARIA labels and semantic HTML
+- **Color Contrast**: WCAG AA compliant color combinations
+- **Focus Management**: Visible focus indicators and logical tab order
+- **Responsive Text**: Scales appropriately across devices
+
+## 🤝 Contributing
+
+We welcome contributions from developers, designers, and accessibility experts! 
+
+### Getting Started
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-component`)
+3. Commit your changes (`git commit -m 'Add new component'`)
+4. Push to the branch (`git push origin feature/new-component`)
+5. Open a Pull Request
+
+### Guidelines
+
+This design system is built for modern government services. Contributions should align with:
+
+- **Accessibility**: All components must meet WCAG 2.1 AA standards
+- **Performance**: Maintain fast loading times and smooth interactions
+- **Usability**: Design for users with varying levels of digital literacy
+- **Internationalization**: Support for multiple languages and scripts
+- **Mobile-First**: Responsive design that works on all devices
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- WCAG Guidelines for accessibility standards
+- Government design systems worldwide for inspiration
+- The open source community for tools and libraries
+
+## 📞 Support
+
+- **Documentation**: [Civix UI Documentation](https://civix-ui.example.com)
+- **Community**: [GitHub Discussions](https://github.com/your-username/civix-ui/discussions)
+- **Issues**: [GitHub Issues](https://github.com/your-username/civix-ui/issues)
+- **Email**: support@civix-ui.example.com
+
+---
+
+**Civix UI - Modern E-Government Design System** - Building accessible digital services for all citizens 🌐
