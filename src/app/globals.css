@@ -17,7 +17,7 @@ body {
 
 @theme {
   /* 🟦 Primary (Blue) */
-  --color-primary-50: #f0f9ff;
+  /* --color-primary-50: #f0f9ff;
   --color-primary-100: #e0f2fe;
   --color-primary-200: #bae6fd;
   --color-primary-300: #7dd3fc;
@@ -26,7 +26,19 @@ body {
   --color-primary-600: #0284c7;
   --color-primary-700: #0369a1;
   --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
+  --color-primary-900: #0c4a6e; */
+
+  /* 🇧🇩 Primary (Green - Bangladesh Inspired) */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #166534;
+  --color-primary-900: #14532d;
 
   /* ⬛ Secondary (Grayish) */
   --color-secondary-50: #f8fafc;
