@@ -360,7 +360,7 @@ export default function GuidelinesPage() {
                 <CardHeader>
                   <CardTitle className="text-red-800 dark:text-red-200 flex items-center space-x-2">
                     <XCircle className="h-5 w-5" />
-                    <span>Don't / করবেন না</span>
+                    <span>Don&apos;t / করবেন না</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

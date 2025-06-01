@@ -42,7 +42,7 @@ const citizenRegistrationSchema = z.object({
   }),
 });
 
-const serviceApplicationSchema = z.object({
+const serviceApplicationSchema: z.ZodType<any> = z.object({
   serviceType: z.string().min(1, "সেবার ধরন নির্বাচন করুন"),
   applicantName: z.string().min(2, "আবেদনকারীর নাম লিখুন"),
   fatherName: z.string().min(2, "পিতার নাম লিখুন"),
@@ -55,7 +55,6 @@ const serviceApplicationSchema = z.object({
 });
 
 type CitizenRegistrationForm = z.infer<typeof citizenRegistrationSchema>;
-type ServiceApplicationForm = z.infer<typeof serviceApplicationSchema>;
 
 const InteractiveDemo = ({ title, description, children }: {
   title: string;
@@ -280,7 +279,6 @@ const CitizenRegistrationDemo = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    watch,
     reset,
   } = useForm<CitizenRegistrationForm>({
     resolver: zodResolver(citizenRegistrationSchema),
@@ -784,16 +782,16 @@ export default function ComponentsPage() {
                 <CardHeader>
                   <CardTitle className="text-red-800 dark:text-red-200 flex items-center space-x-2">
                     <XCircle className="h-5 w-5" />
-                    <span>Don't / করবেন না</span>
+                    <span>Don&apos;t / করবেন না</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-red-800 dark:text-red-200">
-                    <li>• Don't show validation errors before user input</li>
+                    <li>• Don&apos;t show validation errors before user input</li>
                     <li>• Avoid complex forms without clear progress indication</li>
-                    <li>• Don't use technical error messages for end users</li>
+                    <li>• Don&apos;t use technical error messages for end users</li>
                     <li>• Avoid auto-submitting forms without user confirmation</li>
-                    <li>• Don't hide important validation requirements</li>
+                    <li>• Don&apos;t hide important validation requirements</li>
                     <li>• Avoid inconsistent button placements and styles</li>
                   </ul>
                 </CardContent>

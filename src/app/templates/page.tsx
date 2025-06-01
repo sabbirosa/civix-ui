@@ -417,7 +417,7 @@ export default function TemplatesPage() {
                   Need a Custom Template?
                 </h2>
                 <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-                  Can't find what you need? Our team can create custom templates specifically for your government department or ministry.
+                  Can&apos;t find what you need? Our team can create custom templates specifically for your government department or ministry.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button variant="secondary" size="large">

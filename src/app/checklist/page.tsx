@@ -124,7 +124,6 @@ const checklistItems: ChecklistItem[] = [
 
 export default function ChecklistPage() {
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
-  const [showCompleted, setShowCompleted] = useState(true);
 
   const handleItemCheck = (itemId: string) => {
     const newCheckedItems = new Set(checkedItems);
