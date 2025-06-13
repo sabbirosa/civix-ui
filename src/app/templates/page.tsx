@@ -22,6 +22,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type ComplexityLevel = keyof typeof complexityColors;
@@ -471,10 +472,12 @@ export default function TemplatesPage() {
 
                     {/* Actions */}
                     <div className="flex space-x-3">
-                      <Button variant="primary" size="small" className="flex-1">
-                        <Eye className="h-4 w-4 mr-2" />
-                        Preview
-                      </Button>
+                      <Link href={`/templates/${template.id}`} className="flex-1">
+                        <Button variant="primary" size="small" className="w-full">
+                          <Eye className="h-4 w-4 mr-2" />
+                          Preview
+                        </Button>
+                      </Link>
                       <Button variant="outline" size="small" className="flex-1">
                         <Download className="h-4 w-4 mr-2" />
                         Download
